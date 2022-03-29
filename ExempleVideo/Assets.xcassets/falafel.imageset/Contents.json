@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "recette-falafels-maison.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "recette-falafels-maison-1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
