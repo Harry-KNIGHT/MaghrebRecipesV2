@@ -36,7 +36,9 @@ struct RecipeListView: View {
                         }
                     }
                 }
-            }.searchable(text: $recipeVM.search)
+            }
+            .listStyle(.inset)
+            .searchable(text: $recipeVM.search)
             .navigationTitle("Recettes")
         }
     }

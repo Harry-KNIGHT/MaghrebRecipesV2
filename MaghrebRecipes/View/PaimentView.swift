@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PaimentView: View {
     @EnvironmentObject var recipeVM: RecipeViewModel
-        var body: some View {
+    var body: some View {
         Form {
             Section {
                 Picker("Moyen de paiement", selection: $recipeVM.selection) {
@@ -26,12 +26,14 @@ struct PaimentView: View {
                 }
             }
             
-            Section(header: Text(String(recipeVM.total) + "€")) {
+            Section(header: Text(String(recipeVM.total) + "€").font(.headline)) {
                 Button("Payer") {
                     
                 }
             }
         }
+        .navigationTitle("Paiement")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

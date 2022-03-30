@@ -14,41 +14,37 @@ struct OrderView: View {
         NavigationView {
             VStack {
                 if !recipeVM.recipeItems.isEmpty {
-                        List {
-                            Section {
+                    List {
+                        Section {
                             ForEach(recipeVM.recipeItems) { recipe in
                                 HStack {
-                                        Text(recipe.title)
-                                            .font(.headline)
+                                    Text(recipe.title)
+                                        .font(.headline)
                                     Spacer()
-                                        Text(String(recipe.price) + "€")
+                                    Text(String(recipe.price) + "€")
                                 }
                             }
                             .onDelete(perform: recipeVM.delet)
                             .onMove(perform: recipeVM.moveRecipe)
                         }
-                            Section {
-                                NavigationLink(destination: PaimentView()) {
-                                    Text("Paiement")
-                                        .foregroundColor(.blue)
-                                }
+                        Section(header: Text(String(recipeVM.total) + "€")) {
+                            NavigationLink(destination: PaimentView()) {
+                                Text("Paiement")
+                                    .foregroundColor(.blue)
+                            }
                         }
-                    
-                        }.listStyle(.grouped)
+                    }       .listStyle(.inset)
                 }else {
-                    VStack {
-                        Image(systemName: "cart.fill")
-                            .font(.system(size: 50))
-                        Text("Votre panier est vide ")
-                            .font(.title)
-                    }.foregroundStyle(.secondary)
+                    EmptyView(imageName: "cart.fill", title: "Votre panier est vide")
                 }
                 
-                  
+                
             }
             .navigationTitle("Commander")
             .toolbar {
-                EditButton()
+                if !recipeVM.recipeItems.isEmpty {
+                    EditButton()
+                }
             }
         }
     }

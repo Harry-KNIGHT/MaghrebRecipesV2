@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RecipeModel: Identifiable {
+struct RecipeModel: Identifiable, Equatable {
     var id = UUID()
     let title: String
     let price: Double
