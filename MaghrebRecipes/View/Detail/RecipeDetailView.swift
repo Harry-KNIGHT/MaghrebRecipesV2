@@ -13,36 +13,43 @@ struct RecipeDetailView: View {
     let recipe: RecipeModel
     var body: some View {
         VStack {
-            List {
-                VStack(alignment: .leading) {
+            ScrollView {
+                VStack {
+                    RecipeImageView(recipe: recipe, width: 350, height: 220)
+                
+                }
                     HStack {
-                        RecipeImageView(recipe: recipe, width: 350, height: 200)
-                        Spacer()
-                    }
-                    HStack {
+                        VStack(alignment: .leading, spacing: 5) {
                         Text(recipe.title)
                             .foregroundStyle(.primary)
                             .font(.title2.bold())
-                        Spacer()
+                        
                         Text(String(recipe.price * recipeVM.value) + "€")
                             .font(.headline)
+                        }
+                        Spacer()
                     }
-                    Stepper("\(recipeVM.value.formatted()) \(recipe.title)") {
-                        recipeVM.incremet()
-                    } onDecrement: {
-                        recipeVM.decrement()
-                    }
-                }
+                Divider()
+
+                Stepper("\(recipeVM.value.formatted()) \(recipeVM.value > 1 ? "menus" : "menu")") {
+                    recipeVM.incremet()
+                } onDecrement: {
+                    recipeVM.decrement()
+                }.padding(.vertical, 3)
+                
+                Divider()
+                VStack(alignment: .leading, spacing: 5) {
+                Text("Description:")
+                    .font(.headline)
                 Text(recipe.description)
                     .padding(.vertical)
-                
-            }.listStyle(.plain)
+                }.padding(.vertical)
+            }
             
             Button("Commander") {
                 // ajouter recette à la commande
                 recipeVM.add(recipe: recipe)
-                
-            }
+            }.padding(.bottom)
             .font(.title.bold())
             .buttonStyle(.borderedProminent)
             .navigationTitle(recipe.title)
@@ -61,7 +68,7 @@ struct RecipeDetailView: View {
             }, label: {
                 Image(systemName:  favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart" )
             }))
-        }
+        }.padding(.horizontal)
     }
 }
 
