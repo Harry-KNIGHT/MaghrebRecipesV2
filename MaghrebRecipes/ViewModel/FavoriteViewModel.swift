@@ -22,4 +22,15 @@ class FavoriteViewModel: ObservableObject {
     func delet(at offset: IndexSet) {
         self.favoritesRecipes.remove(atOffsets: offset)
     }
+    
+    func removeFavoriteRecipe(recipe: RecipeModel) {
+        self.favoritesRecipes.removeAll { $0.id == recipe.id }
+    }
+    func addOrRemove(recipe: RecipeModel) {
+        if favoritesRecipes.contains(recipe) {
+            removeFavoriteRecipe(recipe: recipe)
+        }else {
+            add(recipe: recipe)
+        }
+    }
 }
