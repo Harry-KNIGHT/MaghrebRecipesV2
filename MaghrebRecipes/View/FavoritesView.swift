@@ -16,17 +16,19 @@ struct FavoritesView: View {
                     List {
                         Section {
                             ForEach(favoriteVM.favoritesRecipes) { recipe in
-                                HStack(alignment: .center) {
-                                    RecipeImageView(recipe: recipe)
-                                        .font(.headline)
-                                    VStack(alignment: .leading, spacing: 5) {
-                                        Text(recipe.title)
+                                NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                    HStack(alignment: .center) {
+                                        RecipeImageView(recipe: recipe)
                                             .font(.headline)
-                                        Text(String(recipe.price) + "€")
-                                        Text(recipe.description)
-                                            .foregroundColor(.secondary)
-                                            .font(.subheadline)
-                                            .lineLimit(2) 
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            Text(recipe.title)
+                                                .font(.headline)
+                                            Text(String(recipe.price) + "€")
+                                            Text(recipe.description)
+                                                .foregroundColor(.secondary)
+                                                .font(.subheadline)
+                                                .lineLimit(2) 
+                                        }
                                     }
                                 }
                             }
