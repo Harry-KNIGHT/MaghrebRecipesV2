@@ -55,16 +55,7 @@ struct RecipeDetailView: View {
             .navigationTitle(recipe.title)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button(action: {
-                
-                
-                if !favoriteVM.favoritesRecipes.contains(recipe) {
-                    favoriteVM.add(recipe: recipe)
-                }else {
-                    self.favoriteVM.favoritesRecipes.removeAll {
-                        $0.id == recipe.id
-                    }
-                    print("Already liked")
-                }
+                favoriteVM.addOrRemove(recipe: recipe)
             }, label: {
                 Image(systemName:  favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart" )
             }))
