@@ -52,6 +52,17 @@ struct RecipeDetailView: View {
             }.padding(.bottom)
             .font(.title.bold())
             .buttonStyle(.borderedProminent)
+            .modifier(Navigation(recipe: recipe))
+        }.padding(.horizontal)
+    }
+}
+
+struct Navigation: ViewModifier {
+    let recipe: RecipeModel
+    @EnvironmentObject var recipeVM: RecipeViewModel
+    @EnvironmentObject var favoriteVM: FavoriteViewModel
+    func body(content: Content) -> some View {
+        content
             .navigationTitle(recipe.title)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button(action: {
@@ -59,7 +70,6 @@ struct RecipeDetailView: View {
             }, label: {
                 Image(systemName:  favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart" )
             }))
-        }.padding(.horizontal)
     }
 }
 
@@ -72,3 +82,4 @@ struct RecipeDetailView_Previews: PreviewProvider {
         }
     }
 }
+
