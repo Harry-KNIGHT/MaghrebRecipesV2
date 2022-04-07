@@ -44,7 +44,14 @@ struct FavoritesView: View {
             .navigationTitle("Favoris")
             .toolbar {
                 if !favoriteVM.favoritesRecipes.isEmpty {
-                    EditButton()
+                    Button("Remove all") {
+                        favoriteVM.isPresented = true
+                    }.alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
+                        Button("Oui", role: .cancel) {
+                            favoriteVM.removeAll()
+                        }
+                        Button("Non") { }
+                    }
                 }
             }
         }
