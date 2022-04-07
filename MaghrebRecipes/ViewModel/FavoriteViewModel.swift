@@ -10,6 +10,7 @@ import Foundation
 
 class FavoriteViewModel: ObservableObject {
     @Published var favoritesRecipes: [RecipeModel] = []
+    @Published var isPresented: Bool = false
     
     func add(recipe: RecipeModel) {
         self.favoritesRecipes.append(recipe)
@@ -32,5 +33,9 @@ class FavoriteViewModel: ObservableObject {
         }else {
             add(recipe: recipe)
         }
+    }
+    
+    func removeAll() {
+        self.favoritesRecipes.removeAll()
     }
 }
