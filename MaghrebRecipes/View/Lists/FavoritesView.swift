@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FavoritesView: View {
     @EnvironmentObject var favoriteVM: FavoriteViewModel
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
         NavigationView {
             VStack {
@@ -44,11 +46,12 @@ struct FavoritesView: View {
             .navigationTitle("Favoris")
             .toolbar {
                 if !favoriteVM.favoritesRecipes.isEmpty {
-                    Button("Remove all") {
+                    Button("Tout supprimer") {
                         favoriteVM.isPresented = true
                     }.alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
                         Button("Oui", role: .cancel) {
                             favoriteVM.removeAll()
+                            self.presentationMode.wrappedValue.dismiss()
                         }
                         Button("Non") { }
                     }
