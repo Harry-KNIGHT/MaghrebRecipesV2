@@ -31,7 +31,7 @@ struct PersonalRecipeListView: View {
                         }
                     }
                 }else {
-                    EmptyView(imageName: "exclamationmark.circle.fill", title: "Aucune recette crée").multilineTextAlignment(.center)
+                    EmptyView(imageName: "exclamationmark.circle.fill", title: "Aucune recette créée").multilineTextAlignment(.center)
                         .padding()
                 }
             }
