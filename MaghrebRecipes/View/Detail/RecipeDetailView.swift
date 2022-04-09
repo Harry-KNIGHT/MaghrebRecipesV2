@@ -10,50 +10,41 @@ import SwiftUI
 struct RecipeDetailView: View {
     @EnvironmentObject var recipeVM: RecipeViewModel
     @EnvironmentObject var favoriteVM: FavoriteViewModel
+    @EnvironmentObject var addRecipeVM: AddRecipeViewModel
     let recipe: RecipeModel
     var body: some View {
         VStack {
-            ScrollView {
-                VStack {
+              List {
                     RecipeImageView(recipe: recipe, width: 350, height: 220)
-                
-                }
                     HStack {
                         VStack(alignment: .leading, spacing: 5) {
                         Text(recipe.title)
                             .foregroundStyle(.primary)
                             .font(.title2.bold())
                         
-                        Text(String(recipe.price * recipeVM.value) + "€")
+                        Text(String(recipe.price) + "€")
                             .font(.headline)
                         }
                         Spacer()
-                    }
-                Divider()
-
-                Stepper("\(recipeVM.value.formatted()) \(recipeVM.value > 1 ? "menus" : "menu")") {
-                    recipeVM.incremet()
-                } onDecrement: {
-                    recipeVM.decrement()
-                }.padding(.vertical, 3)
                 
-                Divider()
+            }
                 VStack(alignment: .leading, spacing: 5) {
                 Text("Description:")
                     .font(.headline)
                 Text(recipe.description)
                     .padding(.vertical)
                 }.padding(.vertical)
-            }
+            }.listStyle(.inset)
             
-            Button("Commander") {
-                // ajouter recette à la commande
-                recipeVM.add(recipe: recipe)
-            }.padding(.bottom)
-            .font(.title.bold())
-            .buttonStyle(.borderedProminent)
-            .modifier(Navigation(recipe: recipe))
-        }.padding(.horizontal)
+            if !addRecipeVM.myRecipes.contains(recipe) {
+                Button("Commander") {
+                    // ajouter recette à la commande
+                    recipeVM.add(recipe: recipe)
+                }.padding(.bottom)
+                .font(.title.bold())
+                .buttonStyle(.borderedProminent)
+            }else {}
+        }.modifier(Navigation(recipe: recipe))
     }
 }
 
@@ -79,6 +70,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
             RecipeDetailView(recipe:  RecipeModel(title: "Maakouda", price: 7, photo: "maakouda", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", recipCategory: .entry))
                 .environmentObject(RecipeViewModel())
                 .environmentObject(FavoriteViewModel())
+                .environmentObject(AddRecipeViewModel())
         }
     }
 }
