@@ -16,14 +16,13 @@ struct ContentView: View {
                 }
             OrderView()
                 .tabItem {
-                    Label("Order", systemImage: "bag.circle.fill")
+                    Label("Commande", systemImage: "bag.circle.fill")
                 }
             
-            
-            FavoritesView()
+            PersonalRecipeListView()
                 .tabItem {
-                    Label("Favorits", systemImage: "heart.circle.fill")
-                }
+                    Label("Créations", systemImage: "viewfinder.circle.fill")
+            }
         }
     }
 }
@@ -32,5 +31,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(RecipeViewModel())
+            .environmentObject(FavoriteViewModel())
+            .environmentObject(AddRecipeViewModel())
     }
 }
