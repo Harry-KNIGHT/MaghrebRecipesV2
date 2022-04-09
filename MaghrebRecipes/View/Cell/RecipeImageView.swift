@@ -14,9 +14,22 @@ struct RecipeImageView: View {
     var height: CGFloat = 100
     
     var body: some View {
+        if !recipe.photo.isEmpty {
         Image(recipe.photo).resizable()
             .frame(width: width, height: height, alignment: .center)
             .clipShape(RoundedRectangle(cornerRadius: 15))
+        }else {
+            ZStack {
+            RoundedRectangle(cornerRadius: 15)
+                .frame(width: width, height: height, alignment: .center)
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .foregroundColor(.secondary)
+                Text("Maghreb Recipes")
+                    .foregroundColor(.primary)
+                    .font(.headline)
+            }
+            
+        }
     }
 }
 
