@@ -12,11 +12,13 @@ struct MaghrebRecipesApp: App {
     
     @StateObject var recipeViewModel = RecipeViewModel()
     @StateObject var favoriteViewModel = FavoriteViewModel()
+    @StateObject var addRecipe = AddRecipeViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(RecipeViewModel())
                 .environmentObject(FavoriteViewModel())
+                .environmentObject(AddRecipeViewModel())
         }
     }
 }
