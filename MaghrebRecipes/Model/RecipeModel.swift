@@ -18,8 +18,8 @@ struct RecipeModel: Identifiable, Equatable {
 
 enum RecipeCategory: String, CaseIterable {
     case entry = "Entrée"
-    case dish = "Plats"
-    case dessert = "Desserts"
+    case dish = "Plat"
+    case dessert = "Dessert"
 }
 
 
