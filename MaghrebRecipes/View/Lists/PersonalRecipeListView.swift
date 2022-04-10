@@ -29,9 +29,11 @@ struct PersonalRecipeListView: View {
                                 }
                             }
                         }
+                        .onDelete(perform: addRecipesVM.delet)
+                        .onMove(perform: addRecipesVM.move)
                     }
                 }else {
-                    EmptyView(imageName: "exclamationmark.circle.fill", title: "Aucune recette créée").multilineTextAlignment(.center)
+                    EmptyView(imageName: Image(systemName: "exclamationmark.circle.fill"), title: "Aucune recette créée").multilineTextAlignment(.center)
                         .padding()
                 }
             }
