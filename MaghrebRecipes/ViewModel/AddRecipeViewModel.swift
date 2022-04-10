@@ -13,7 +13,7 @@ class AddRecipeViewModel: ObservableObject {
     @Published var price: String = ""
     @Published var description: String = ""
     @Published var photo: String = ""
-    @Published var recipeCategory: RecipeCategory = .entry
+    @Published var recipeCategory: RecipeCategory = .dish
     
 
     
