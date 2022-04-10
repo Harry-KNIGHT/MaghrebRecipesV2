@@ -19,7 +19,7 @@ class AddRecipeViewModel: ObservableObject {
     
     func createRecipe() {
         let recipe = RecipeModel(title: title, price: Double(price) ?? 0, photo: photo, description: description, recipCategory: recipeCategory)
-        self.myRecipes.append(recipe)
+        self.myRecipes.insert(recipe, at: 0)
     }
     
     
@@ -30,5 +30,17 @@ class AddRecipeViewModel: ObservableObject {
             description = ""
             recipeCategory = .entry
 
+    }
+    
+    func delet(at offsets: IndexSet) {
+        myRecipes.remove(atOffsets: offsets)
+    }
+    
+    func removeAll() {
+        self.myRecipes.removeAll()
+    }
+    
+    func move(from offsets: IndexSet, to destination: Int) {
+        self.myRecipes.move(fromOffsets: offsets, toOffset: destination)
     }
 }
