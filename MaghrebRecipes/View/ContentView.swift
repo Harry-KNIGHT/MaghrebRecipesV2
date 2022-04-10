@@ -21,7 +21,7 @@ struct ContentView: View {
             
             PersonalRecipeListView()
                 .tabItem {
-                    Label("Créations", systemImage: "viewfinder.circle.fill")
+                    Label("Créations", systemImage: "person.circle.fill")
             }
         }
     }

@@ -35,10 +35,8 @@ struct OrderView: View {
                         }
                     }       .listStyle(.inset)
                 }else {
-                    EmptyView(imageName: "cart.fill", title: "Votre panier est vide")
-                }
-                
-                
+                    EmptyView(imageName: Image(systemName: "cart.fill"), title: "Panier vide")
+                }   
             }
             .navigationTitle("Commander")
             .toolbar {

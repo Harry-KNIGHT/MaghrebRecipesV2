@@ -40,7 +40,7 @@ struct FavoritesView: View {
                     }
                     .listStyle(.inset)
                 }else {
-                    EmptyView(imageName: "heart.fill", title: "Pas de favoris")
+                    EmptyView(imageName: Image(systemName: "heart.fill"), title: "Pas de favoris")
                 }
             }
             .navigationTitle("Favoris")
