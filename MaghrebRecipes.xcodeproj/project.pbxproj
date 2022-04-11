@@ -15,6 +15,7 @@
 		3C61146327F32BFC00541FBC /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61146227F32BFC00541FBC /* RecipeListView.swift */; };
 		3C61146527F32C0300541FBC /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61146427F32C0300541FBC /* RecipeDetailView.swift */; };
 		3C61146E27F32E6C00541FBC /* RecipeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61146D27F32E6C00541FBC /* RecipeImageView.swift */; };
+		3C69D80B280444AB00EA5222 /* LikeButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C69D80A280444AB00EA5222 /* LikeButtonCell.swift */; };
 		3CC3F54727EF3311007D99CF /* MaghrebRecipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3F54627EF3311007D99CF /* MaghrebRecipesApp.swift */; };
 		3CC3F54B27EF3312007D99CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CC3F54A27EF3312007D99CF /* Assets.xcassets */; };
 		3CC3F54E27EF3312007D99CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CC3F54D27EF3312007D99CF /* Preview Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		3C61146227F32BFC00541FBC /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		3C61146427F32C0300541FBC /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		3C61146D27F32E6C00541FBC /* RecipeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImageView.swift; sourceTree = "<group>"; };
+		3C69D80A280444AB00EA5222 /* LikeButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonCell.swift; sourceTree = "<group>"; };
 		3CC3F54327EF3311007D99CF /* MaghrebRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaghrebRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC3F54627EF3311007D99CF /* MaghrebRecipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaghrebRecipesApp.swift; sourceTree = "<group>"; };
 		3CC3F54A27EF3312007D99CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				3C2CA7F927F49FE4008962A4 /* EmptyView.swift */,
 				3C61146D27F32E6C00541FBC /* RecipeImageView.swift */,
+				3C69D80A280444AB00EA5222 /* LikeButtonCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				3C2CA7FA27F49FE4008962A4 /* EmptyView.swift in Sources */,
 				3C61146527F32C0300541FBC /* RecipeDetailView.swift in Sources */,
 				3CC3F55927EF386E007D99CF /* RecipeModel.swift in Sources */,
+				3C69D80B280444AB00EA5222 /* LikeButtonCell.swift in Sources */,
 				3C61146327F32BFC00541FBC /* RecipeListView.swift in Sources */,
 				3C61146E27F32E6C00541FBC /* RecipeImageView.swift in Sources */,
 				3C61146127F32BBF00541FBC /* ContentView.swift in Sources */,

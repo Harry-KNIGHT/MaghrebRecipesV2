@@ -29,7 +29,7 @@ struct FavoritesView: View {
                                             Text(recipe.description)
                                                 .foregroundColor(.secondary)
                                                 .font(.subheadline)
-                                                .lineLimit(2) 
+                                                .lineLimit(2)
                                         }
                                     }
                                 }
@@ -45,16 +45,28 @@ struct FavoritesView: View {
             }
             .navigationTitle("Favoris")
             .toolbar {
-                if !favoriteVM.favoritesRecipes.isEmpty {
-                    Button("Tout supprimer") {
-                        favoriteVM.isPresented = true
-                    }.alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
-                        Button("Oui", role: .cancel) {
-                            favoriteVM.removeAll()
-                            self.presentationMode.wrappedValue.dismiss()
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    
+                    if !favoriteVM.favoritesRecipes.isEmpty {
+                        Button("Vider") {
+                            favoriteVM.isPresented = true
+                        }.alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
+                            Button("Oui", role: .cancel) {
+                                favoriteVM.removeAll()
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                            Button("Non") {}
+                                .foregroundColor(.red)
                         }
-                        Button("Non") { }
                     }
+                }
+                
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Image(systemName: "chevron.down")
+                    })
                 }
             }
         }
