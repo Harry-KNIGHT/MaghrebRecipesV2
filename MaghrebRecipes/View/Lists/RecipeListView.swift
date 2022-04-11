@@ -19,12 +19,17 @@ struct RecipeListView: View {
                     Section(header: Text(section.rawValue)) {
                         
                         ForEach(recipes.filter({ $0.recipCategory == section })) { recipe in
-                            
-          
-                                    NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                                        HStack(alignment: .top) {
-                                        RecipeImageView(recipe: recipe)
-                                        TitleDescriptionView(recipe: recipe)
+                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                HStack(alignment: .top) {
+                                    
+                                    RecipeImageView(recipe: recipe)
+                                    
+                                    
+                                    TitleDescriptionView(recipe: recipe)
+                                    Spacer()
+                                    if favoriteVM.favoritesRecipes.contains(recipe) {
+                                        LikeButtonCell(recipe: recipe)
+                                    }
                                 }
                             }
                         }
@@ -66,7 +71,7 @@ struct RecipeListView_Previews: PreviewProvider {
         Group {
             RecipeListView()
                 .environmentObject(AddRecipeViewModel())
-            .environmentObject(FavoriteViewModel())
+                .environmentObject(FavoriteViewModel())
             RecipeListView()
                 .preferredColorScheme(.dark)
                 .environmentObject(AddRecipeViewModel())
