@@ -10,8 +10,8 @@ import SwiftUI
 struct RecipeImageView: View {
     
     let recipe: RecipeModel
-    var width: CGFloat = 150
-    var height: CGFloat = 100
+    var width: CGFloat = 130
+    var height: CGFloat = 80
     
     var body: some View {
         if !recipe.photo.isEmpty {
