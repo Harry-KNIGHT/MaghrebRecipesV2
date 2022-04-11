@@ -23,18 +23,11 @@ struct RecipeListView: View {
                         
                         ForEach(recipes.filter({ $0.recipCategory == section })) { recipe in
                             
-                                HStack {
+          
                                     NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                        HStack(alignment: .top) {
                                         RecipeImageView(recipe: recipe)
-                                        VStack(alignment: .leading, spacing: 5) {
-                                            Text(recipe.title)
-                                                .font(.headline)
-                                            Text(String(recipe.price) + "€")
-                                            Text(recipe.description)
-                                                .lineLimit(2)
-                                                .foregroundColor(.secondary)
-                                        }
-                                    
+                                        TitleDescriptionView(recipe: recipe)
                                 }
                             }
                         }
@@ -74,9 +67,30 @@ struct RecipeListView: View {
 
 struct RecipeListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeListView()
-            .environmentObject(RecipeViewModel())
-            .environmentObject(AddRecipeViewModel())
+        Group {
+            RecipeListView()
+                .environmentObject(RecipeViewModel())
+                .environmentObject(AddRecipeViewModel())
             .environmentObject(FavoriteViewModel())
+            RecipeListView()
+                .preferredColorScheme(.dark)
+                .environmentObject(RecipeViewModel())
+                .environmentObject(AddRecipeViewModel())
+                .environmentObject(FavoriteViewModel())
+        }
+    }
+}
+
+struct TitleDescriptionView: View {
+    let recipe: RecipeModel
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text(recipe.title)
+                .font(.headline)
+            
+            Text(recipe.description)
+                .lineLimit(3)
+                .foregroundColor(.secondary)
+        }
     }
 }
