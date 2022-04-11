@@ -14,26 +14,27 @@ struct RecipeDetailView: View {
     let recipe: RecipeModel
     var body: some View {
         VStack {
-              List {
-                    RecipeImageView(recipe: recipe, width: 350, height: 220)
-                    HStack {
-                        VStack(alignment: .leading, spacing: 5) {
-                        Text(recipe.title)
-                            .foregroundStyle(.primary)
-                            .font(.title2.bold())
-                        
-                        Text(String(recipe.price) + "€")
-                            .font(.headline)
-                        }
-                        Spacer()
+            List {
+                RecipeImageView(recipe: recipe, width: 355, height: 220)
+                HStack {
+                    Text(recipe.title)
+                        .foregroundStyle(.primary)
+                        .font(.title2.bold())
+                    Spacer()
+                    Text(recipe.recipCategory.rawValue)
+                        .foregroundColor(.secondary)
+                        .font(.headline)
+                }
                 
-            }
-                VStack(alignment: .leading, spacing: 5) {
-                Text("Description:")
-                    .font(.headline)
-                Text(recipe.description)
-                    .padding(.vertical)
-                }.padding(.vertical)
+                HStack {
+                    Text("Prix moyen:")
+                    Text(String(recipe.price.formatted()) + "€")
+                }
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Description:")
+                        .font(.headline)
+                    Text(recipe.description)
+                }
             }.listStyle(.inset)
             
             if !addRecipeVM.myRecipes.contains(recipe) {
@@ -41,8 +42,8 @@ struct RecipeDetailView: View {
                     // ajouter recette à la commande
                     recipeVM.add(recipe: recipe)
                 }.padding(.bottom)
-                .font(.title.bold())
-                .buttonStyle(.borderedProminent)
+                    .font(.title.bold())
+                    .buttonStyle(.borderedProminent)
             }else {}
         }.modifier(Navigation(recipe: recipe))
     }
