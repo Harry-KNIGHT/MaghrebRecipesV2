@@ -14,11 +14,6 @@ struct ContentView: View {
                 .tabItem {
                     Label("Recettes", systemImage: "list.bullet.circle.fill")
                 }
-            OrderView()
-                .tabItem {
-                    Label("Commande", systemImage: "bag.circle.fill")
-                }
-            
             PersonalRecipeListView()
                 .tabItem {
                     Label("Créations", systemImage: "person.circle.fill")
@@ -30,7 +25,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(RecipeViewModel())
             .environmentObject(FavoriteViewModel())
             .environmentObject(AddRecipeViewModel())
     }

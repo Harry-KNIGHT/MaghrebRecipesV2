@@ -75,7 +75,6 @@ struct AddRecipeForm: View {
 struct AddRecipeForm_Previews: PreviewProvider {
     static var previews: some View {
         AddRecipeForm()
-            .environmentObject(RecipeViewModel())
             .environmentObject(AddRecipeViewModel())
     }
 }

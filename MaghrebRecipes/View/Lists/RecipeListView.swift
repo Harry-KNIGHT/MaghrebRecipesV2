@@ -11,9 +11,6 @@ struct RecipeListView: View {
     
     @EnvironmentObject var addRecipeVM: AddRecipeViewModel
     @EnvironmentObject var favoriteVM: FavoriteViewModel
-    @EnvironmentObject var recipeVM: RecipeViewModel
-    
-    
     var body: some View {
         NavigationView {
             List {
@@ -35,7 +32,6 @@ struct RecipeListView: View {
                 }
             }
             .listStyle(.inset)
-            .searchable(text: $recipeVM.search)
             .navigationTitle("Recettes")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -69,12 +65,10 @@ struct RecipeListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             RecipeListView()
-                .environmentObject(RecipeViewModel())
                 .environmentObject(AddRecipeViewModel())
             .environmentObject(FavoriteViewModel())
             RecipeListView()
                 .preferredColorScheme(.dark)
-                .environmentObject(RecipeViewModel())
                 .environmentObject(AddRecipeViewModel())
                 .environmentObject(FavoriteViewModel())
         }
