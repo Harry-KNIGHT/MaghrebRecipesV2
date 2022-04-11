@@ -33,8 +33,7 @@ struct PersonalRecipeListView: View {
                         .onMove(perform: addRecipesVM.move)
                     }
                 }else {
-                    EmptyView(imageName: Image(systemName: "exclamationmark.circle.fill"), title: "Aucune recette créée").multilineTextAlignment(.center)
-                        .padding()
+                    EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée").multilineTextAlignment(.center)
                 }
             }
             .navigationTitle("Mes recettes")
@@ -47,6 +46,12 @@ struct PersonalRecipeListView: View {
                             .font(.title2)
                     }).sheet(isPresented: $addRecipesVM.isSheetOn) {
                         AddRecipeForm()
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if !addRecipesVM.myRecipes.isEmpty {
+                        EditButton()
                     }
                 }
             }
