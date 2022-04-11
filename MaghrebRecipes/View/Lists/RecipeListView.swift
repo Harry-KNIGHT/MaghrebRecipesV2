@@ -83,12 +83,12 @@ struct RecipeListView_Previews: PreviewProvider {
 struct TitleDescriptionView: View {
     let recipe: RecipeModel
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 10) {
             Text(recipe.title)
                 .font(.headline)
             
             Text(recipe.description)
-                .lineLimit(3)
+                .lineLimit(2)
                 .foregroundColor(.secondary)
         }
     }
