@@ -16,7 +16,7 @@ struct ContentView: View {
                 }
             PersonalRecipeListView()
                 .tabItem {
-                    Label("Créations", systemImage: "person.circle.fill")
+                    Label("Créations", systemImage: "book.closed.circle.fill")
             }
         }
     }
