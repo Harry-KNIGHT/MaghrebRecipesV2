@@ -18,7 +18,7 @@ class FavoriteViewModel: ObservableObject {
     }
     
     /// Move item on array from the view
-    /// - Parameters: Index for catch the item to int for move it at the right place
+    /// - Parameters: Index for catch the item from int for move it at the right place
     ///   - offsets: Index at the item is taken
     ///   - destination: Number in the array where the item is moved
     func move(from offsets: IndexSet, to destination: Int) {
@@ -43,7 +43,8 @@ class FavoriteViewModel: ObservableObject {
         }
     }
     
-    func removeAll() {
+    /// Remove all the favorite recipe in the array
+    func removeAllFavoriteRecipes() {
         self.favoritesRecipes.removeAll()
     }
 }

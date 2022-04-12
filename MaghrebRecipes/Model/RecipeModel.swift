@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Model of recipe object
 struct RecipeModel: Identifiable, Equatable {
     var id = UUID()
     let title: String
@@ -16,10 +17,9 @@ struct RecipeModel: Identifiable, Equatable {
     let recipCategory: RecipeCategory
 }
 
+/// Category of recipes
 enum RecipeCategory: String, CaseIterable {
     case entry = "Entrée"
     case dish = "Plat"
     case dessert = "Dessert"
 }
-
-
