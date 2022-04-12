@@ -10,7 +10,7 @@ import SwiftUI
 struct FavoritesView: View {
     @EnvironmentObject var favoriteVM: FavoriteViewModel
     @Environment(\.presentationMode) var presentationMode
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -21,16 +21,7 @@ struct FavoritesView: View {
                                 NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                                     HStack(alignment: .center) {
                                         RecipeImageView(recipe: recipe)
-                                            .font(.headline)
-                                        VStack(alignment: .leading, spacing: 5) {
-                                            Text(recipe.title)
-                                                .font(.headline)
-                                            Text(String(recipe.price) + "€")
-                                            Text(recipe.description)
-                                                .foregroundColor(.secondary)
-                                                .font(.subheadline)
-                                                .lineLimit(2)
-                                        }
+                                        TitleDescriptionView(recipe: recipe)
                                     }
                                 }
                             }
@@ -52,7 +43,7 @@ struct FavoritesView: View {
                             favoriteVM.isPresented = true
                         }.alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
                             Button("Oui", role: .cancel) {
-                                favoriteVM.removeAll()
+                                favoriteVM.removeAllFavoriteRecipes()
                                 self.presentationMode.wrappedValue.dismiss()
                             }
                             Button("Non") {}
