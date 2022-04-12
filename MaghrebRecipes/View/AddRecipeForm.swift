@@ -19,14 +19,15 @@ struct AddRecipeForm: View {
                         RecipeFormExtractedView(title: "Nom", titleKey: "Tajine Zeitoune", recipeField: $recipeVM.title)
                             .focused($isFocused)
                         RecipeFormExtractedView(title: "Prix", titleKey: "0.0€", recipeField: $recipeVM.price)
+                        
                             .keyboardType(.numbersAndPunctuation)
                             .focused($isFocused)
+                        
                         Picker("Type de recette", selection: $recipeVM.recipeCategory) {
                             ForEach(RecipeCategory.allCases, id: \.self) {
                                 Text($0.rawValue)
                             }
-                        }.pickerStyle(.segmented)
-                        
+                        }.pickerStyle(.automatic)
                         VStack(alignment: .leading) {
                             Text("Description")
                             TextEditor(text: $recipeVM.description)
