@@ -18,14 +18,7 @@ struct PersonalRecipeListView: View {
                             NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                                 HStack(alignment: .center) {
                                     RecipeImageView(recipe: recipe)
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        Text(recipe.title)
-                                            .font(.headline)
-                                        Text(String(recipe.price) + "€")
-                                        Text(recipe.description)
-                                            .foregroundColor(.secondary)
-                                            .lineLimit(2)
-                                    }
+                                    TitleDescriptionView(recipe: recipe)
                                 }
                             }
                         }
