@@ -37,7 +37,8 @@ struct PersonalRecipeListView: View {
                     }, label: {
                         Image(systemName: "plus.circle.fill")
                             .font(.title2)
-                    }).sheet(isPresented: $addRecipesVM.isSheetOn) {
+                    }).foregroundStyle(.green)
+                    .sheet(isPresented: $addRecipesVM.isSheetOn) {
                         AddRecipeForm()
                     }
                 }
@@ -45,6 +46,7 @@ struct PersonalRecipeListView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     if !addRecipesVM.myRecipes.isEmpty {
                         EditButton()
+                            .foregroundStyle(.green)
                     }
                 }
             }

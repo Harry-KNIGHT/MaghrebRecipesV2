@@ -41,7 +41,8 @@ struct FavoritesView: View {
                     if !favoriteVM.favoritesRecipes.isEmpty {
                         Button("Vider") {
                             favoriteVM.isPresented = true
-                        }.alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
+                        }.foregroundStyle(.green)
+                        .alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
                             Button("Oui", role: .destructive) {
                                 favoriteVM.removeAllFavoriteRecipes()
                                 self.presentationMode.wrappedValue.dismiss()
@@ -55,6 +56,7 @@ struct FavoritesView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Image(systemName: "chevron.down")
+                            .foregroundStyle(.green)
                     })
                 }
             }
