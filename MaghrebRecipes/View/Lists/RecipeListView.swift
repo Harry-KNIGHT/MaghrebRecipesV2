@@ -13,35 +13,41 @@ struct RecipeListView: View {
     @EnvironmentObject var favoriteVM: FavoriteViewModel
     var body: some View {
         NavigationView {
-            List {
-                Text("Sélection du moment ")
-                    .foregroundStyle(.green)
-                    .font(.headline)
+            
+            ScrollView(.vertical, showsIndicators: false) {
                 LazyHGridView()
-                
-                ForEach(RecipeCategory.allCases, id: \.self) { section in
-                    
-                    Section(header: Text(section.rawValue)) {
-                        ForEach(recipes.filter({ $0.recipCategory == section })) { recipe in
-                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                                HStack(alignment: .top) {
-                                    
-                                    RecipeImageView(recipe: recipe)
-                                    
-                                    
-                                    TitleDescriptionView(recipe: recipe)
-                                    Spacer()
-                                    if favoriteVM.favoritesRecipes.contains(recipe) {
-                                        LikeButtonCell(recipe: recipe)
+               List {
+                    ForEach(RecipeCategory.allCases, id: \.self) { section in
+                        
+                        Section(header: Text(section.rawValue)) {
+                            ForEach(recipes.filter({ $0.recipCategory == section })) { recipe in
+                                NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                    HStack(alignment: .top) {
+                                        
+                                        RecipeImageView(recipe: recipe)
+                                        
+                                        
+                                        TitleDescriptionView(recipe: recipe)
+                                        
+                                        Spacer()
+                                        if favoriteVM.favoritesRecipes.contains(recipe) {
+                                            LikeButtonCell(recipe: recipe)
+                                            
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
+               }.listStyle(.plain)
+               .frame(height: 1000)
+               
             }
-            .listStyle(.plain)
             .navigationTitle("Recettes")
+            
+            
+            
+            // Navigation Bar
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -50,11 +56,11 @@ struct RecipeListView: View {
                         Image(systemName: "plus.circle.fill")
                             .font(.title2)
                     }).foregroundColor(Color.green)
-                    .accessibility(label: Text("Go to your favorites recipes"))
-                    .sheet(isPresented: $addRecipeVM.isSheetOn) {
-                        AddRecipeForm()
-                    }
-                
+                        .accessibility(label: Text("Go to your favorites recipes"))
+                        .sheet(isPresented: $addRecipeVM.isSheetOn) {
+                            AddRecipeForm()
+                        }
+                    
                 }
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button(action: {
@@ -63,11 +69,10 @@ struct RecipeListView: View {
                         Image(systemName: "heart.circle.fill")
                             .font(.title2)
                     }).foregroundColor(Color.green)
-                    .sheet(isPresented: $favoriteVM.isSheetOn) {
-                        FavoritesView()
-                    }
+                        .sheet(isPresented: $favoriteVM.isSheetOn) {
+                            FavoritesView()
+                        }
                 }
-            
             }
         }
     }

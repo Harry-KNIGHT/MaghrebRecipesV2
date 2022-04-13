@@ -10,6 +10,11 @@ import SwiftUI
 struct LazyHGridView: View {
     
     var body: some View {
+        VStack(alignment: .leading) {
+        Text("Sélection du moment ")
+                .foregroundStyle(.green)
+                .font(.headline)
+                .padding(.leading)
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(recipes.shuffled()) { recipe in
@@ -17,6 +22,7 @@ struct LazyHGridView: View {
                         LazyHGridCell(recipe: recipe)
                     }
                 }
+            }.padding(.leading)
             }
         }
     }
