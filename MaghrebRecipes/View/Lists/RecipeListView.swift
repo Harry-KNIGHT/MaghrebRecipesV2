@@ -14,10 +14,14 @@ struct RecipeListView: View {
     var body: some View {
         NavigationView {
             List {
+                Text("Sélection du moment ")
+                    .foregroundStyle(.green)
+                    .font(.headline)
+                LazyHGridView()
+                
                 ForEach(RecipeCategory.allCases, id: \.self) { section in
                     
                     Section(header: Text(section.rawValue)) {
-                        
                         ForEach(recipes.filter({ $0.recipCategory == section })) { recipe in
                             NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                                 HStack(alignment: .top) {
@@ -36,7 +40,7 @@ struct RecipeListView: View {
                     }
                 }
             }
-            .listStyle(.inset)
+            .listStyle(.plain)
             .navigationTitle("Recettes")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -45,12 +49,12 @@ struct RecipeListView: View {
                     }, label: {
                         Image(systemName: "plus.circle.fill")
                             .font(.title2)
-                    }).sheet(isPresented: $addRecipeVM.isSheetOn) {
+                    }).accessibility(label: Text("Go to your favorites recipes"))
+                    .sheet(isPresented: $addRecipeVM.isSheetOn) {
                         AddRecipeForm()
                     }
-                    
-                }
                 
+                }
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button(action: {
                         favoriteVM.isSheetOn.toggle()
@@ -61,6 +65,7 @@ struct RecipeListView: View {
                         FavoritesView()
                     }
                 }
+            
             }
         }
     }

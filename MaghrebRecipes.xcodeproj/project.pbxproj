@@ -20,6 +20,8 @@
 		3CC3F54B27EF3312007D99CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CC3F54A27EF3312007D99CF /* Assets.xcassets */; };
 		3CC3F54E27EF3312007D99CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CC3F54D27EF3312007D99CF /* Preview Assets.xcassets */; };
 		3CC3F55927EF386E007D99CF /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3F55827EF386E007D99CF /* RecipeModel.swift */; };
+		3CD517B82806FD1600A6F921 /* LazyHGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD517B72806FD1600A6F921 /* LazyHGridView.swift */; };
+		3CD517BA2807057100A6F921 /* LazyHGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD517B92807057100A6F921 /* LazyHGridCell.swift */; };
 		3CFABDCB2800A30700546812 /* AddRecipeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFABDCA2800A30700546812 /* AddRecipeForm.swift */; };
 		3CFABDCD2800AA5600546812 /* AddRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFABDCC2800AA5600546812 /* AddRecipeViewModel.swift */; };
 		3CFABDD22800C84E00546812 /* PersonalRecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFABDD12800C84E00546812 /* PersonalRecipeListView.swift */; };
@@ -40,6 +42,8 @@
 		3CC3F54A27EF3312007D99CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CC3F54D27EF3312007D99CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3CC3F55827EF386E007D99CF /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
+		3CD517B72806FD1600A6F921 /* LazyHGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyHGridView.swift; sourceTree = "<group>"; };
+		3CD517B92807057100A6F921 /* LazyHGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyHGridCell.swift; sourceTree = "<group>"; };
 		3CFABDCA2800A30700546812 /* AddRecipeForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeForm.swift; sourceTree = "<group>"; };
 		3CFABDCC2800AA5600546812 /* AddRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewModel.swift; sourceTree = "<group>"; };
 		3CFABDD12800C84E00546812 /* PersonalRecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalRecipeListView.swift; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			children = (
 				3C2CA7F927F49FE4008962A4 /* EmptyView.swift */,
 				3C61146D27F32E6C00541FBC /* RecipeImageView.swift */,
+				3CD517B92807057100A6F921 /* LazyHGridCell.swift */,
 				3C69D80A280444AB00EA5222 /* LikeButtonCell.swift */,
 			);
 			path = Cell;
@@ -153,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				3C61146227F32BFC00541FBC /* RecipeListView.swift */,
+				3CD517B72806FD1600A6F921 /* LazyHGridView.swift */,
 				3CFABDD12800C84E00546812 /* PersonalRecipeListView.swift */,
 				3C2CA7F727F49F81008962A4 /* FavoritesView.swift */,
 			);
@@ -229,11 +235,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CD517B82806FD1600A6F921 /* LazyHGridView.swift in Sources */,
 				3C61145527F1D6E000541FBC /* Ressources.swift in Sources */,
 				3C2CA7FA27F49FE4008962A4 /* EmptyView.swift in Sources */,
 				3C61146527F32C0300541FBC /* RecipeDetailView.swift in Sources */,
 				3CC3F55927EF386E007D99CF /* RecipeModel.swift in Sources */,
 				3C69D80B280444AB00EA5222 /* LikeButtonCell.swift in Sources */,
+				3CD517BA2807057100A6F921 /* LazyHGridCell.swift in Sources */,
 				3C61146327F32BFC00541FBC /* RecipeListView.swift in Sources */,
 				3C61146E27F32E6C00541FBC /* RecipeImageView.swift in Sources */,
 				3C61146127F32BBF00541FBC /* ContentView.swift in Sources */,

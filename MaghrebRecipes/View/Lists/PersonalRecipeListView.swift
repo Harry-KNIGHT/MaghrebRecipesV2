@@ -24,7 +24,7 @@ struct PersonalRecipeListView: View {
                         }
                         .onDelete(perform: addRecipesVM.delet)
                         .onMove(perform: addRecipesVM.move)
-                    }
+                    }.listStyle(.plain)
                 }else {
                     EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée").multilineTextAlignment(.center)
                 }
