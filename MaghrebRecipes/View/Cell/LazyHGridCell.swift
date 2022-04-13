@@ -13,26 +13,11 @@ struct LazyHGridCell: View {
         GridItem(.fixed(80)),
     ]
     
-    let width: CGFloat = 180
-    let height: CGFloat = 110
     var body: some View {
         LazyHGrid(rows: rows, alignment: .center) {
             VStack(alignment: .leading) {
-                Image(recipe.photo).resizable()
-                    .frame(width: width, height: height, alignment: .center)
-                    .clipShape(CustomPath(radius: 20, corners: [.topLeft, .topRight]))
-                VStack(alignment: .leading) {
-                Text(recipe.title)
-                        .font(.headline)
-                        .foregroundColor(.white)
-                    Text(recipe.recipCategory.rawValue)
-                        .foregroundColor(.secondary)
-                        .font(.callout)
-                }
-                   
-                    .padding(.bottom)
-                    .padding(.leading)
-
+                LazyHGridImageCellView(recipe: recipe)
+                HGridTitleCategoryView(recipe: recipe)
             }
             .background(Color.green)
             .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -48,7 +33,6 @@ struct LazyHGridCell_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
         }
     }
-    
 }
 
 struct CustomPath: Shape {
@@ -58,5 +42,32 @@ struct CustomPath: Shape {
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
+    }
+}
+
+struct HGridTitleCategoryView: View {
+    let recipe: RecipeModel
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(recipe.title)
+                .font(.headline)
+                .foregroundColor(.white)
+            Text(recipe.recipCategory.rawValue)
+                .foregroundColor(.secondary)
+                .font(.callout)
+        }
+        .padding(.bottom)
+        .padding(.leading)
+    }
+}
+
+struct LazyHGridImageCellView: View {
+    let recipe: RecipeModel
+    let width: CGFloat = 180
+    let height: CGFloat = 110
+    var body: some View {
+        Image(recipe.photo).resizable()
+            .frame(width: width, height: height, alignment: .center)
+            .clipShape(CustomPath(radius: 20, corners: [.topLeft, .topRight]))
     }
 }
