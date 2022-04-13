@@ -50,7 +50,7 @@ struct Navigation: ViewModifier {
                 favoriteVM.addOrRemove(recipe: recipe)
             }, label: {
                 Image(systemName:  favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart" )
-            }))
+            }).foregroundColor(Color.green))
     }
 }
 

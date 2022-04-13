@@ -49,7 +49,8 @@ struct RecipeListView: View {
                     }, label: {
                         Image(systemName: "plus.circle.fill")
                             .font(.title2)
-                    }).accessibility(label: Text("Go to your favorites recipes"))
+                    }).foregroundColor(Color.green)
+                    .accessibility(label: Text("Go to your favorites recipes"))
                     .sheet(isPresented: $addRecipeVM.isSheetOn) {
                         AddRecipeForm()
                     }
@@ -61,7 +62,8 @@ struct RecipeListView: View {
                     }, label: {
                         Image(systemName: "heart.circle.fill")
                             .font(.title2)
-                    }).sheet(isPresented: $favoriteVM.isSheetOn) {
+                    }).foregroundColor(Color.green)
+                    .sheet(isPresented: $favoriteVM.isSheetOn) {
                         FavoritesView()
                     }
                 }

@@ -13,7 +13,7 @@ struct LikeButtonCell: View {
     var body: some View {
         Button(action: { }, label: {
             Image(systemName: favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart")
-        }).foregroundColor(.blue)
+        }).foregroundColor(.green)
     }
 }
 

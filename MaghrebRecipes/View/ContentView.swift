@@ -18,7 +18,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Créations", systemImage: "book.closed.circle.fill")
             }
-        }
+        }.accentColor(.green)
     }
 }
 
