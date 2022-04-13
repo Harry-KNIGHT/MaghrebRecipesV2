@@ -1,6 +1,6 @@
 //
 //  MaghrebRecipesApp.swift
-//  ExempleVideo
+//  MaghrebRecipes
 //
 //  Created by Elliot Knight on 26/03/2022.
 //

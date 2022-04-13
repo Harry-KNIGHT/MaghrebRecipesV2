@@ -11,18 +11,20 @@ struct LazyHGridView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-        Text("Sélection du moment ")
+            Text("Sélections du moment ")
                 .foregroundStyle(.green)
                 .font(.headline)
                 .padding(.leading)
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(recipes.shuffled()) { recipe in
-                    NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                        LazyHGridCell(recipe: recipe)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(recipes.shuffled()) { recipe in
+                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                            LazyHGridCell(recipe: recipe)
+                        }
                     }
                 }
-            }.padding(.leading)
+                .padding(.leading)
+                .padding(.trailing)
             }
         }
     }
