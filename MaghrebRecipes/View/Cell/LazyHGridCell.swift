@@ -10,7 +10,7 @@ import SwiftUI
 struct LazyHGridCell: View {
     let recipe: RecipeModel
     let rows = [
-        GridItem(.fixed(80)),
+        GridItem(.fixed(80))
     ]
     
     var body: some View {
@@ -53,7 +53,7 @@ struct HGridTitleCategoryView: View {
                 .font(.headline)
                 .foregroundColor(.white)
             Text(recipe.recipCategory.rawValue)
-                .foregroundColor(.secondary)
+                .foregroundColor(.white)
                 .font(.callout)
         }
         .padding(.bottom)

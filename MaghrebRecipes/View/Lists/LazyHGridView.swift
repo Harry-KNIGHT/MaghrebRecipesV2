@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LazyHGridView: View {
-    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Sélections du moment ")
