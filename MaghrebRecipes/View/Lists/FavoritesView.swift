@@ -15,21 +15,7 @@ struct FavoritesView: View {
         NavigationView {
             VStack {
                 if !favoriteVM.favoritesRecipes.isEmpty {
-                    List {
-                        Section {
-                            ForEach(favoriteVM.favoritesRecipes) { recipe in
-                                NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                                    HStack(alignment: .center) {
-                                        RecipeImageView(recipe: recipe)
-                                        TitleDescriptionView(recipe: recipe)
-                                    }
-                                }
-                            }
-                            .onDelete(perform: favoriteVM.delet)
-                            .onMove(perform: favoriteVM.move)
-                        }
-                    }
-                    .listStyle(.inset)
+                    ExtractedFavoriteListView()
                 }else {
                     EmptyView(imageName: Image(systemName: "heart.fill"), title: "Pas de favoris")
                 }
@@ -73,5 +59,21 @@ struct FavoritesView_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
                 .environmentObject(FavoriteViewModel())
         }
+    }
+}
+
+struct ExtractedFavoriteListView: View {
+    @EnvironmentObject var favoriteVM: FavoriteViewModel
+    var body: some View {
+        List {
+            Section {
+                ForEach(favoriteVM.favoritesRecipes) { recipe in
+                    RowCellView(recipe: recipe)
+                }
+                .onDelete(perform: favoriteVM.delet)
+                .onMove(perform: favoriteVM.move)
+            }
+        }
+        .listStyle(.inset)
     }
 }
