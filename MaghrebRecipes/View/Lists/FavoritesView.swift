@@ -29,7 +29,7 @@ struct FavoritesView: View {
                             favoriteVM.isPresented = true
                         }.foregroundStyle(.green)
                         .alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
-                            Button("Oui", role: .destructive) {
+                            Button("Delet", role: .destructive) {
                                 favoriteVM.removeAllFavoriteRecipes()
                                 self.presentationMode.wrappedValue.dismiss()
                             }
