@@ -11,10 +11,37 @@ struct LikeButtonCell: View {
    @EnvironmentObject var favoriteVM: FavoriteViewModel
     let recipe: RecipeModel
     var body: some View {
-        Button(action: { }, label: {
+        Button(action: {
+            favoriteVM.addOrRemove(recipe: recipe)
+            self.addOrRemoveHaptic()
+
+        }, label: {
+            
             Image(systemName: favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart")
-        }).foregroundColor(.green)
+        })
+        .foregroundColor(.green)
+    
     }
+  
+    func simpleSucces() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+    }
+    
+  
+    func addOrRemoveHaptic() {
+        if  !favoriteVM.favoritesRecipes.contains(recipe) {
+           hapticFeedbackOnTap()
+        } else {
+            simpleSucces()
+        }
+    }
+    
+    
+    func hapticFeedbackOnTap(style: UIImpactFeedbackGenerator.FeedbackStyle = .soft) {
+        let impact = UIImpactFeedbackGenerator(style: style)
+        impact.impactOccurred()
+      }
 }
 
 struct LikeButtonCell_Previews: PreviewProvider {
@@ -22,4 +49,16 @@ struct LikeButtonCell_Previews: PreviewProvider {
         LikeButtonCell(recipe:   RecipeModel(title: "Briouats fromage", price: 5, photo: "briouats", description: "La briouate fromage est une entrée que l’on prépare pour le Ramadan et qui accompagne d’autres plats comme la chorba. La cuisson au four est idéale pour éviter que ce soit trop gras et permet d’avoir un côté croustillant délicieux avec le fondant du fromage : un vrai régal ! Cette recette est très facile et rapide à faire.", recipCategory: .entry))
             .environmentObject(FavoriteViewModel())
     }
+}
+
+
+extension View {
+
+  func hapticFeedbackOnTap(style: UIImpactFeedbackGenerator.FeedbackStyle = .light) -> some View {
+    self.onTapGesture {
+      let impact = UIImpactFeedbackGenerator(style: style)
+      impact.impactOccurred()
+    }
+  }
+
 }

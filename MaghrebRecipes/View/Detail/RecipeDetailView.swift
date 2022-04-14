@@ -24,7 +24,6 @@ struct RecipeDetailView: View {
                         .foregroundColor(.secondary)
                         .font(.headline)
                 }
-                
                 HStack {
                     Text("Prix moyen:")
                     Text(String(recipe.price.formatted()) + "€")
@@ -49,9 +48,16 @@ struct Navigation: ViewModifier {
             .navigationBarItems(trailing: Button(action: {
                 favoriteVM.addOrRemove(recipe: recipe)
             }, label: {
-                Image(systemName:  favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart" )
+                LikeButtonCell(recipe: recipe)
+                    
             }).foregroundColor(Color.green))
+            
     }
+    
+      func simpleSucces() {
+          let generator = UINotificationFeedbackGenerator()
+          generator.notificationOccurred(.success)
+      }
 }
 
 struct RecipeDetailView_Previews: PreviewProvider {
