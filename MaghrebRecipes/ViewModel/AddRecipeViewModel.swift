@@ -24,13 +24,16 @@ class AddRecipeViewModel: ObservableObject {
         self.myRecipes.insert(recipe, at: 0)
     }
     
+    func removeLastRecipeInformation() {
+        title = ""
+        recipePrice = 0
+        description = ""
+        recipeCategory = .entry
+    }
     
     func addRecipeButton() {
-            createRecipe()
-            title = ""
-            recipePrice = 0
-            description = ""
-            recipeCategory = .entry
+        createRecipe()
+        removeLastRecipeInformation()
 
     }
     
