@@ -66,7 +66,12 @@ struct FavoritesView: View {
 
 struct FavoritesView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoritesView()
-            .environmentObject(FavoriteViewModel())
+        Group {
+            FavoritesView()
+                .environmentObject(FavoriteViewModel())
+            FavoritesView()
+                .preferredColorScheme(.dark)
+                .environmentObject(FavoriteViewModel())
+        }
     }
 }

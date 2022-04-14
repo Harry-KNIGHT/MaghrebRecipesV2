@@ -27,5 +27,10 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
             .environmentObject(FavoriteViewModel())
             .environmentObject(AddRecipeViewModel())
+        ContentView()
+            .preferredColorScheme(.dark)
+            .environmentObject(FavoriteViewModel())
+            .environmentObject(AddRecipeViewModel())
+
     }
 }

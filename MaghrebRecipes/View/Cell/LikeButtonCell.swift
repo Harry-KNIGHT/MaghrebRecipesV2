@@ -46,19 +46,12 @@ struct LikeButtonCell: View {
 
 struct LikeButtonCell_Previews: PreviewProvider {
     static var previews: some View {
-        LikeButtonCell(recipe:   RecipeModel(title: "Briouats fromage", price: 5, photo: "briouats", description: "La briouate fromage est une entrée que l’on prépare pour le Ramadan et qui accompagne d’autres plats comme la chorba. La cuisson au four est idéale pour éviter que ce soit trop gras et permet d’avoir un côté croustillant délicieux avec le fondant du fromage : un vrai régal ! Cette recette est très facile et rapide à faire.", recipCategory: .entry))
-            .environmentObject(FavoriteViewModel())
+        Group {
+            LikeButtonCell(recipe:   RecipeModel(title: "Briouats fromage", price: 5, photo: "briouats", description: "La briouate fromage est une entrée que l’on prépare pour le Ramadan et qui accompagne d’autres plats comme la chorba. La cuisson au four est idéale pour éviter que ce soit trop gras et permet d’avoir un côté croustillant délicieux avec le fondant du fromage : un vrai régal ! Cette recette est très facile et rapide à faire.", recipCategory: .entry))
+                .environmentObject(FavoriteViewModel())
+            LikeButtonCell(recipe:   RecipeModel(title: "Briouats fromage", price: 5, photo: "briouats", description: "La briouate fromage est une entrée que l’on prépare pour le Ramadan et qui accompagne d’autres plats comme la chorba. La cuisson au four est idéale pour éviter que ce soit trop gras et permet d’avoir un côté croustillant délicieux avec le fondant du fromage : un vrai régal ! Cette recette est très facile et rapide à faire.", recipCategory: .entry))
+                .preferredColorScheme(.dark)
+                .environmentObject(FavoriteViewModel())
+        }
     }
-}
-
-
-extension View {
-
-  func hapticFeedbackOnTap(style: UIImpactFeedbackGenerator.FeedbackStyle = .light) -> some View {
-    self.onTapGesture {
-      let impact = UIImpactFeedbackGenerator(style: style)
-      impact.impactOccurred()
-    }
-  }
-
 }

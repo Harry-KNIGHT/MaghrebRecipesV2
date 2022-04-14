@@ -32,8 +32,14 @@ struct LazyHGridView: View {
 
 struct LazyHGridView_Previews: PreviewProvider {
     static var previews: some View {
+        Group {
         LazyHGridView()
             .environmentObject(FavoriteViewModel())
             .environmentObject(AddRecipeViewModel())
+            LazyHGridView()
+                .preferredColorScheme(.dark)
+                .environmentObject(FavoriteViewModel())
+                .environmentObject(AddRecipeViewModel())
+        }
     }
 }

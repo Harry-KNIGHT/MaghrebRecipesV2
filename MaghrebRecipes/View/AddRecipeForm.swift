@@ -78,6 +78,9 @@ struct AddRecipeForm_Previews: PreviewProvider {
     static var previews: some View {
         AddRecipeForm()
             .environmentObject(AddRecipeViewModel())
+        AddRecipeForm()
+            .preferredColorScheme(.dark)
+            .environmentObject(AddRecipeViewModel())
     }
 }
 

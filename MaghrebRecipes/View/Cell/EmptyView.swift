@@ -22,6 +22,10 @@ struct EmptyView: View {
 
 struct EmptyView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView(imageName: Image(systemName: "cart.fill"), title: "Votre panier est vide")
+        Group {
+            EmptyView(imageName: Image(systemName: "cart.fill"), title: "Votre panier est vide")
+            EmptyView(imageName: Image(systemName: "cart.fill"), title: "Votre panier est vide")
+                .preferredColorScheme(.dark)
+        }
     }
 }
