@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import SwiftUI
+
 class AddRecipeViewModel: ObservableObject {
     @Published var myRecipes: [RecipeModel] = []
     @Published var isSheetOn = false
@@ -42,5 +44,10 @@ class AddRecipeViewModel: ObservableObject {
     
     func move(from offsets: IndexSet, to destination: Int) {
         self.myRecipes.move(fromOffsets: offsets, toOffset: destination)
+    }
+    
+    func simpleSuccesHaptic() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.warning)
     }
 }
