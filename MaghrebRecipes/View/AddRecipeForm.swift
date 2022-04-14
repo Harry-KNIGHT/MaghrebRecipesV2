@@ -11,6 +11,7 @@ struct AddRecipeForm: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var recipeVM: AddRecipeViewModel
     @FocusState var isFocused: Bool
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -19,20 +20,12 @@ struct AddRecipeForm: View {
                         RecipeFormExtractedView(title: "Nom", titleKey: "Tajine Zeitoune", recipeField: $recipeVM.title)
                             .focused($isFocused)
                         
-            
-                         
-                        
                         RecipeTypePickerView()
                         
-                        
-                        
-                    RecipePricePickerView()
-                        
-                        
+                        RecipePricePickerView()
                         
                         DescriptionView()
                             .focused($isFocused)
-                      
                     }
                     
                     Section {
@@ -48,7 +41,6 @@ struct AddRecipeForm: View {
                         })
                     }
                 }
-                
             }
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
@@ -59,14 +51,12 @@ struct AddRecipeForm: View {
                         }
                     }
                 }
-                
                 ToolbarItem {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Image(systemName: "chevron.down")
                     }).foregroundStyle(.green)
-                    
                 }
             }
             .navigationTitle("Ajouter une recette")
@@ -100,7 +90,7 @@ struct RecipeFormExtractedView: View {
 
 struct RecipeTypePickerView: View {
     @EnvironmentObject var recipeVM: AddRecipeViewModel
-
+    
     var body: some View {
         Picker("Type de recette", selection: $recipeVM.recipeCategory) {
             ForEach(RecipeCategory.allCases, id: \.self) {
@@ -112,7 +102,7 @@ struct RecipeTypePickerView: View {
 
 struct DescriptionView: View {
     @EnvironmentObject var recipeVM: AddRecipeViewModel
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Description")
@@ -123,7 +113,7 @@ struct DescriptionView: View {
 
 struct RecipePricePickerView: View {
     @EnvironmentObject var recipeVM: AddRecipeViewModel
-
+    
     var body: some View {
         Picker("Prix moyen", selection: $recipeVM.recipePrice) {
             ForEach(1...30, id: \.self) {
