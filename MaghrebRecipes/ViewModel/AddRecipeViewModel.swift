@@ -12,7 +12,7 @@ class AddRecipeViewModel: ObservableObject {
     @Published var myRecipes: [RecipeModel] = []
     @Published var isSheetOn = false
     @Published var title: String = ""
-    @Published var price: String = ""
+    @Published var recipePrice: Int = 1
     @Published var description: String = ""
     @Published var photo: String = ""
     @Published var recipeCategory: RecipeCategory = .entry
@@ -20,7 +20,7 @@ class AddRecipeViewModel: ObservableObject {
 
     
     func createRecipe() {
-        let recipe = RecipeModel(title: title, price: Double(price) ?? 0, photo: photo, description: description, recipCategory: recipeCategory)
+        let recipe = RecipeModel(title: title, price: Double(recipePrice), photo: photo, description: description, recipCategory: recipeCategory)
         self.myRecipes.insert(recipe, at: 0)
     }
     
@@ -28,7 +28,7 @@ class AddRecipeViewModel: ObservableObject {
     func addRecipeButton() {
             createRecipe()
             title = ""
-            price = ""
+            recipePrice = 0
             description = ""
             recipeCategory = .entry
 
