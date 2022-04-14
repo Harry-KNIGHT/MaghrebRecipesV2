@@ -13,7 +13,7 @@ struct PersonalRecipeListView: View {
         NavigationView {
             VStack {
                 if !addRecipesVM.myRecipes.isEmpty {
-                   ExtractedListView()
+                   ExtractedPersonalRecipesListView()
                 }else {
                     EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée").multilineTextAlignment(.center)
                 }
@@ -55,7 +55,7 @@ struct PersonalRecipeListView_Previews: PreviewProvider {
     }
 }
 
-struct ExtractedListView: View {
+struct ExtractedPersonalRecipesListView: View {
     @EnvironmentObject var addRecipesVM: AddRecipeViewModel
 
     var body: some View {
