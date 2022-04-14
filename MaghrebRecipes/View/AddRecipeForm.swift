@@ -18,21 +18,16 @@ struct AddRecipeForm: View {
                     Section {
                         RecipeFormExtractedView(title: "Nom", titleKey: "Tajine Zeitoune", recipeField: $recipeVM.title)
                             .focused($isFocused)
-                        RecipeFormExtractedView(title: "Prix", titleKey: "0.0€", recipeField: $recipeVM.price)
                         
+                        RecipeFormExtractedView(title: "Prix", titleKey: "0.0€", recipeField: $recipeVM.price)
                             .keyboardType(.numbersAndPunctuation)
                             .focused($isFocused)
                         
-                        Picker("Type de recette", selection: $recipeVM.recipeCategory) {
-                            ForEach(RecipeCategory.allCases, id: \.self) {
-                                Text($0.rawValue)
-                            }
-                        }.pickerStyle(.automatic)
-                        VStack(alignment: .leading) {
-                            Text("Description")
-                            TextEditor(text: $recipeVM.description)
-                        }
-                        .focused($isFocused)
+                        PickerView()
+                        
+                        DescriptionView()
+                            .focused($isFocused)
+
                     }
                     
                     Section {
@@ -40,6 +35,7 @@ struct AddRecipeForm: View {
                             if !recipeVM.title.isEmpty && !recipeVM.price.isEmpty && recipeVM.description.count > 5 {
                                 recipeVM.addRecipeButton()
                                 presentationMode.wrappedValue.dismiss()
+                                self.recipeVM.simpleSuccesHaptic()
                             }
                         }, label: {
                             Text("Ajouter la recette")
@@ -93,6 +89,29 @@ struct RecipeFormExtractedView: View {
             Text(title)
             TextField(titleKey, text: $recipeField)
             
+        }
+    }
+}
+
+struct PickerView: View {
+    @EnvironmentObject var recipeVM: AddRecipeViewModel
+
+    var body: some View {
+        Picker("Type de recette", selection: $recipeVM.recipeCategory) {
+            ForEach(RecipeCategory.allCases, id: \.self) {
+                Text($0.rawValue)
+            }
+        }.pickerStyle(.automatic)
+    }
+}
+
+struct DescriptionView: View {
+    @EnvironmentObject var recipeVM: AddRecipeViewModel
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Description")
+            TextEditor(text: $recipeVM.description)
         }
     }
 }

@@ -13,18 +13,7 @@ struct PersonalRecipeListView: View {
         NavigationView {
             VStack {
                 if !addRecipesVM.myRecipes.isEmpty {
-                    List {
-                        ForEach(addRecipesVM.myRecipes) { recipe in
-                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                                HStack(alignment: .center) {
-                                    RecipeImageView(recipe: recipe)
-                                    TitleDescriptionView(recipe: recipe)
-                                }
-                            }
-                        }
-                        .onDelete(perform: addRecipesVM.delet)
-                        .onMove(perform: addRecipesVM.move)
-                    }.listStyle(.plain)
+                   ExtractedListView()
                 }else {
                     EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée").multilineTextAlignment(.center)
                 }
@@ -63,5 +52,18 @@ struct PersonalRecipeListView_Previews: PreviewProvider {
                 .colorScheme(.dark)
                 .environmentObject(AddRecipeViewModel())
         }
+    }
+}
+
+struct ExtractedListView: View {
+    @EnvironmentObject var addRecipesVM: AddRecipeViewModel
+
+    var body: some View {
+        List {
+            ForEach(addRecipesVM.myRecipes) { recipe in
+                RowCellView(recipe: recipe)
+            } .onDelete(perform: addRecipesVM.delet)
+                .onMove(perform: addRecipesVM.move)
+        }.listStyle(.plain)
     }
 }
