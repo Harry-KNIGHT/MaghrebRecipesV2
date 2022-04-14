@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 class FavoriteViewModel: ObservableObject {
     @Published var favoritesRecipes: [RecipeModel] = []
@@ -46,5 +46,24 @@ class FavoriteViewModel: ObservableObject {
     /// Remove all the favorite recipe in the array
     func removeAllFavoriteRecipes() {
         self.favoritesRecipes.removeAll()
+    }
+    
+    
+    func simpleSucces() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.warning)
+    }
+    
+    func hapticFeedbackOnTap(style: UIImpactFeedbackGenerator.FeedbackStyle = .soft) {
+        let impact = UIImpactFeedbackGenerator(style: style)
+        impact.impactOccurred()
+      }
+    
+    func addOrRemoveHaptic(recipe: RecipeModel) {
+        if  !favoritesRecipes.contains(recipe) {
+           hapticFeedbackOnTap()
+        } else {
+            simpleSucces()
+        }
     }
 }

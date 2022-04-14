@@ -13,35 +13,11 @@ struct LikeButtonCell: View {
     var body: some View {
         Button(action: {
             favoriteVM.addOrRemove(recipe: recipe)
-            self.addOrRemoveHaptic()
-
+            self.favoriteVM.addOrRemoveHaptic(recipe: recipe)
         }, label: {
-            
             Image(systemName: favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart")
-        })
-        .foregroundColor(.green)
-    
+        }).foregroundColor(.green)
     }
-  
-    func simpleSucces() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
-    }
-    
-  
-    func addOrRemoveHaptic() {
-        if  !favoriteVM.favoritesRecipes.contains(recipe) {
-           hapticFeedbackOnTap()
-        } else {
-            simpleSucces()
-        }
-    }
-    
-    
-    func hapticFeedbackOnTap(style: UIImpactFeedbackGenerator.FeedbackStyle = .soft) {
-        let impact = UIImpactFeedbackGenerator(style: style)
-        impact.impactOccurred()
-      }
 }
 
 struct LikeButtonCell_Previews: PreviewProvider {
