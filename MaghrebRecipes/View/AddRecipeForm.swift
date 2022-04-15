@@ -16,40 +16,47 @@ struct AddRecipeForm: View {
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var price: String = ""
-    @State private var recipeCategory : RecipeCategory = .entry
+    @State private var recipeCategory : RecipeCategory = .dish
     
     
     var body: some View {
         NavigationView {
             VStack {
                 Form {
-                    Section {
-                        
+                    Section(header: Text("Nom")) {
                         // State variables are binded here (with $), to change there values when value in sub views is updated
-                        RecipeFormExtractedView(title: "Nom", titleKey: "Tajine Zeitoune", recipeField: $title)
+                        RecipeFormExtractedView(titleKey: "Tajine Zeitoune", recipeField: $title)
                             .focused($isFocused)
+                    }
+                    Section(header: Text("Prix moyen")) {
+                        
                         RecipePriceExtractedView(price: $price)
-                        DescriptionView(description: $description)
-                            .focused($isFocused)
+                    }
+                    Section(header: Text("Type de recette")) {
                         RecipeTypePickerView(category: $recipeCategory)
+                        
                     }
                     
-                    Section {
-                        Button(action: {
-                            if !title.isEmpty && description.count > 5 {
-                                
-                                // addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too
-                                recipeVM.addRecipeButton(title: title, price: price, description: description, category: recipeCategory)
-                                presentationMode.wrappedValue.dismiss()
-                                self.recipeVM.simpleSuccesHaptic()
-                            }
-                        }, label: {
-                            Text("Ajouter la recette")
-                                .foregroundColor(!title.isEmpty && description.count > 5 ? .blue : .secondary)
-                        })
+                    Section(header: Text("Description")) {
+                        DescriptionView(description: $description)
+                            .focused($isFocused)
                     }
                 }
+                Button(action: {
+                    if !title.isEmpty && !description.isEmpty {
+                        // addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
+                        recipeVM.addRecipeButton(title: title, price: price, description: description, category: recipeCategory)
+                        presentationMode.wrappedValue.dismiss()
+                        self.recipeVM.simpleSuccesHaptic()
+                    }
+                }, label: {
+                    Label("Créer ma recette", systemImage: "book.closed")
+                        .font(.title2)
+                }).padding(.bottom)
+                    .buttonStyle(.bordered)
+                    .tint(!title.isEmpty && description.count > 5 ? .green : .secondary)
             }
+            
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
                     HStack {
@@ -84,23 +91,18 @@ struct AddRecipeForm_Previews: PreviewProvider {
 }
 
 struct RecipeFormExtractedView: View {
-    var title: String
     var titleKey: String
     
     // we have a binding there, in order to propagate the change to the parent view (variable is defined as a State porperty wrapper in the parent view, and a Binding property wrapper in the child view)
     @Binding var recipeField: String
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(title)
-            TextField(titleKey, text: $recipeField)
-            
-        }
+        TextField(titleKey, text: $recipeField)
     }
 }
 
 struct RecipeTypePickerView: View {
-   
+    
     // we have a binding there, in order to propagate the change to the parent view (variable is defined as a State porperty wrapper in the parent view, and a Binding property wrapper in the child view)
     @Binding var category : RecipeCategory
     
@@ -109,7 +111,8 @@ struct RecipeTypePickerView: View {
             ForEach(RecipeCategory.allCases, id: \.self) {
                 Text($0.rawValue)
             }
-        }.pickerStyle(.automatic)
+        }
+        .pickerStyle(.segmented)
     }
 }
 
@@ -119,10 +122,7 @@ struct DescriptionView: View {
     @Binding var description : String
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Description")
-            TextEditor(text: $description)
-        }
+        TextEditor(text: $description)
     }
 }
 
@@ -130,12 +130,10 @@ struct  RecipePriceExtractedView: View {
     
     // we have a binding there, in order to propagate the change to the parent view (variable is defined as a State porperty wrapper in the parent view, and a Binding property wrapper in the child view)
     @Binding var price : String
-
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Prix moyen")
-            TextField("13.5€", text: $price)
-                .keyboardType(.decimalPad)
-        }
+        TextField("13.5€", text: $price)
+            .keyboardType(.decimalPad)
+        
     }
 }
