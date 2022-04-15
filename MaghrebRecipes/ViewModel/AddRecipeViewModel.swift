@@ -11,28 +11,14 @@ import SwiftUI
 class AddRecipeViewModel: ObservableObject {
     @Published var myRecipes: [RecipeModel] = []
     @Published var isSheetOn = false
-    @Published var title: String = ""
-    @Published var recipePrice: String = ""
-    @Published var description: String = ""
-    @Published var photo: String = ""
-    @Published var recipeCategory: RecipeCategory = .entry
     
     func createRecipe(title : String, price : String, description: String, category : RecipeCategory) {
-        let recipe = RecipeModel(title: title, price: Double(converter(text: price)) ?? 1, photo: photo, description: description, recipCategory: category)
+        let recipe = RecipeModel(title: title, price: Double(price.replacingOccurrences(of: ",", with: ".")) ?? 1, photo: "", description: description, recipCategory: category)
         self.myRecipes.insert(recipe, at: 0)
-    }
-    
-    func removeLastRecipeInformation() {
-        title = ""
-        recipePrice = ""
-        description = ""
-        recipeCategory = .entry
     }
     
     func addRecipeButton(title : String, price : String, description: String, category : RecipeCategory) {
         createRecipe(title: title, price: price, description: description, category: category)
-        removeLastRecipeInformation()
-
     }
     
     func delet(at offsets: IndexSet) {
@@ -52,10 +38,4 @@ class AddRecipeViewModel: ObservableObject {
         generator.notificationOccurred(.warning)
     }
     
-    
-    func converter(text: String) -> String {
-        let textDouble = Double(recipePrice.replacingOccurrences(of: ",", with: ".")) ?? 0
-        // If the Textfield is empty, 0 will be returned
-        return String(format: "%.2f", textDouble)
-    }
 }
