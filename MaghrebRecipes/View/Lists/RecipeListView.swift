@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RecipeListView: View {
     
-    @EnvironmentObject var addRecipeVM: AddRecipeViewModel
-    @EnvironmentObject var favoriteVM: FavoriteViewModel
+    @ObservedObject var addRecipeVM = AddRecipeViewModel.init()
+    @ObservedObject var favoriteVM = FavoriteViewModel.init()
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
@@ -65,7 +65,7 @@ struct RecipeListView_Previews: PreviewProvider {
 
 struct RowCellView: View {
     let recipe: RecipeModel
-    @EnvironmentObject var favoriteVM: FavoriteViewModel
+    @ObservedObject var favoriteVM = FavoriteViewModel.init()
 
     var body: some View {
             HStack(alignment: .top) {
