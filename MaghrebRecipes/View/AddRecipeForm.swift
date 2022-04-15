@@ -13,10 +13,11 @@ struct AddRecipeForm: View {
     @FocusState var isFocused: Bool
     
     // we declare State variables for each component of our recipe
-    @State private var title : String = ""
-    @State private var description : String = ""
-    @State private var price : String = ""
+    @State private var title: String = ""
+    @State private var description: String = ""
+    @State private var price: String = ""
     @State private var recipeCategory : RecipeCategory = .entry
+    
     
     var body: some View {
         NavigationView {
