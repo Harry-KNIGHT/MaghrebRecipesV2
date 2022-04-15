@@ -15,24 +15,12 @@ struct RecipeDetailView: View {
         VStack {
             List {
                 RecipeImageView(recipe: recipe, width: 355, height: 220)
-                HStack {
-                    Text(recipe.title)
-                        .foregroundStyle(.primary)
-                        .font(.title2.bold())
-                    Spacer()
-                    Text(recipe.recipCategory.rawValue)
-                        .foregroundColor(.secondary)
-                        .font(.headline)
-                }
+                RecipeTitleCategoryDetailEctractedView(recipe: recipe)
                 HStack {
                     Text("Prix moyen:")
                     Text(String(recipe.price.formatted()) + "€")
                 }
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Description:")
-                        .font(.headline)
-                    Text(recipe.description)
-                }
+                RecipeDescriptionDetailExtractedView(recipe: recipe)
             }.listStyle(.inset)
         }.modifier(Navigation(recipe: recipe))
     }
@@ -78,3 +66,29 @@ struct RecipeDetailView_Previews: PreviewProvider {
     }
 }
 
+
+struct RecipeTitleCategoryDetailEctractedView: View {
+    let recipe: RecipeModel
+    var body: some View {
+        HStack {
+            Text(recipe.title)
+                .foregroundStyle(.primary)
+                .font(.title2.bold())
+            Spacer()
+            Text(recipe.recipCategory.rawValue)
+                .foregroundColor(.secondary)
+                .font(.headline)
+        }
+    }
+}
+
+struct RecipeDescriptionDetailExtractedView: View {
+    let recipe: RecipeModel
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Description:")
+                .font(.headline)
+            Text(recipe.description)
+        }
+    }
+}
