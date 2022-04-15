@@ -54,7 +54,7 @@ struct AddRecipeForm: View {
                         .font(.title2)
                 }).padding(.bottom)
                     .buttonStyle(.bordered)
-                    .tint(!title.isEmpty && description.count > 5 ? .green : .secondary)
+                    .tint(!title.isEmpty && !description.isEmpty ? .green : .secondary)
             }
             
             .toolbar {
