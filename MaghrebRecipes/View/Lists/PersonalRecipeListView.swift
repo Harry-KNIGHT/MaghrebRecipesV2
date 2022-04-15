@@ -61,7 +61,9 @@ struct ExtractedPersonalRecipesListView: View {
     var body: some View {
         List {
             ForEach(addRecipesVM.myRecipes) { recipe in
+                NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                 RowCellView(recipe: recipe)
+                }
             } .onDelete(perform: addRecipesVM.delet)
                 .onMove(perform: addRecipesVM.move)
         }.listStyle(.plain)
