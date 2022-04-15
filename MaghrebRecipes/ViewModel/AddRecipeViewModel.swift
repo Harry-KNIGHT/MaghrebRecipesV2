@@ -17,8 +17,8 @@ class AddRecipeViewModel: ObservableObject {
     @Published var photo: String = ""
     @Published var recipeCategory: RecipeCategory = .entry
     
-    func createRecipe() {
-        let recipe = RecipeModel(title: title, price: Double(converter(text: recipePrice)) ?? 1, photo: photo, description: description, recipCategory: recipeCategory)
+    func createRecipe(title : String, price : String, description: String, category : RecipeCategory) {
+        let recipe = RecipeModel(title: title, price: Double(converter(text: price)) ?? 1, photo: photo, description: description, recipCategory: category)
         self.myRecipes.insert(recipe, at: 0)
     }
     
@@ -29,8 +29,8 @@ class AddRecipeViewModel: ObservableObject {
         recipeCategory = .entry
     }
     
-    func addRecipeButton() {
-        createRecipe()
+    func addRecipeButton(title : String, price : String, description: String, category : RecipeCategory) {
+        createRecipe(title: title, price: price, description: description, category: category)
         removeLastRecipeInformation()
 
     }
