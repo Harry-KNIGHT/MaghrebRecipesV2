@@ -20,12 +20,10 @@ struct AddRecipeForm: View {
                         RecipeFormExtractedView(title: "Nom", titleKey: "Tajine Zeitoune", recipeField: $recipeVM.title)
                             .focused($isFocused)
                         
-                        RecipeTypePickerView()
-                        
-                        RecipePricePickerView()
-                        
+                        RecipePriceExtractedView()
                         DescriptionView()
                             .focused($isFocused)
+                        RecipeTypePickerView()
                     }
                     
                     Section {
@@ -111,14 +109,14 @@ struct DescriptionView: View {
     }
 }
 
-struct RecipePricePickerView: View {
+struct  RecipePriceExtractedView: View {
     @EnvironmentObject var recipeVM: AddRecipeViewModel
-    
+
     var body: some View {
-        Picker("Prix moyen", selection: $recipeVM.recipePrice) {
-            ForEach(1...30, id: \.self) {
-                Text(String($0) + "€")
-            }
-        }.pickerStyle(.automatic)
+        VStack(alignment: .leading) {
+            Text("Prix moyen")
+            TextField("13.5€", text: $recipeVM.recipePrice)
+                .keyboardType(.decimalPad)
+        }
     }
 }
