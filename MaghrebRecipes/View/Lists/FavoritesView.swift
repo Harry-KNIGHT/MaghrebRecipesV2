@@ -28,12 +28,12 @@ struct FavoritesView: View {
                         Button("Vider") {
                             favoriteVM.isPresented = true
                         }.foregroundStyle(.green)
-                        .alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
-                            Button("Delet", role: .destructive) {
-                                favoriteVM.removeAllFavoriteRecipes()
-                                self.presentationMode.wrappedValue.dismiss()
+                            .alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
+                                Button("Delet", role: .destructive) {
+                                    favoriteVM.removeAllFavoriteRecipes()
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
                             }
-                        }
                     }
                 }
                 
@@ -68,7 +68,9 @@ struct ExtractedFavoriteListView: View {
         List {
             Section {
                 ForEach(favoriteVM.favoritesRecipes) { recipe in
-                    RowCellView(recipe: recipe)
+                    NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                        RowCellView(recipe: recipe)
+                    }
                 }
                 .onDelete(perform: favoriteVM.delet)
                 .onMove(perform: favoriteVM.move)
