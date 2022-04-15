@@ -12,21 +12,19 @@ class AddRecipeViewModel: ObservableObject {
     @Published var myRecipes: [RecipeModel] = []
     @Published var isSheetOn = false
     @Published var title: String = ""
-    @Published var recipePrice: Int = 1
+    @Published var recipePrice: String = ""
     @Published var description: String = ""
     @Published var photo: String = ""
     @Published var recipeCategory: RecipeCategory = .entry
     
-
-    
     func createRecipe() {
-        let recipe = RecipeModel(title: title, price: Double(recipePrice), photo: photo, description: description, recipCategory: recipeCategory)
+        let recipe = RecipeModel(title: title, price: Double(converter(text: recipePrice)) ?? 1, photo: photo, description: description, recipCategory: recipeCategory)
         self.myRecipes.insert(recipe, at: 0)
     }
     
     func removeLastRecipeInformation() {
         title = ""
-        recipePrice = 0
+        recipePrice = ""
         description = ""
         recipeCategory = .entry
     }
@@ -52,5 +50,12 @@ class AddRecipeViewModel: ObservableObject {
     func simpleSuccesHaptic() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.warning)
+    }
+    
+    
+    func converter(text: String) -> String {
+        let textDouble = Double(recipePrice.replacingOccurrences(of: ",", with: ".")) ?? 0
+        // If the Textfield is empty, 0 will be returned
+        return String(format: "%.2f", textDouble)
     }
 }
