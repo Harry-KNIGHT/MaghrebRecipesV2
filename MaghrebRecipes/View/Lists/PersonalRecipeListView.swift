@@ -9,13 +9,25 @@ import SwiftUI
 
 struct PersonalRecipeListView: View {
     @EnvironmentObject var addRecipesVM: AddRecipeViewModel
+    @State private var isShowingSheet = false
     var body: some View {
         NavigationView {
             VStack {
                 if !addRecipesVM.myRecipes.isEmpty {
-                   ExtractedPersonalRecipesListView()
+                    ZStack {
+                    ExtractedPersonalRecipesListView()
+                    }
                 }else {
-                    EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée").multilineTextAlignment(.center)
+                    ZStack {
+                        VStack {
+                           
+                    EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée")
+                        .multilineTextAlignment(.center)
+                
+                        CreateButtonFormEctractedView(isShowingSheet: $isShowingSheet)
+                           
+                        }
+                    }
                 }
             }
             .navigationTitle("Mes recettes")
@@ -27,9 +39,9 @@ struct PersonalRecipeListView: View {
                         Image(systemName: "plus.circle.fill")
                             .font(.title2)
                     }).foregroundStyle(.green)
-                    .sheet(isPresented: $addRecipesVM.isSheetOn) {
-                        AddRecipeForm()
-                    }
+                        .sheet(isPresented: $addRecipesVM.isSheetOn) {
+                            AddRecipeForm()
+                        }
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -57,15 +69,35 @@ struct PersonalRecipeListView_Previews: PreviewProvider {
 
 struct ExtractedPersonalRecipesListView: View {
     @EnvironmentObject var addRecipesVM: AddRecipeViewModel
-
+    
     var body: some View {
         List {
             ForEach(addRecipesVM.myRecipes) { recipe in
                 NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                RowCellView(recipe: recipe)
+                    RowCellView(recipe: recipe)
                 }
             } .onDelete(perform: addRecipesVM.delet)
                 .onMove(perform: addRecipesVM.move)
         }.listStyle(.plain)
+    }
+}
+
+
+struct CreateButtonFormEctractedView: View {
+    @Binding var isShowingSheet: Bool
+    
+    var body: some View {
+        Button(action: {
+           
+            isShowingSheet = true
+        }, label: {
+            Label("Créer une recette", systemImage: "book.closed")
+                .font(.title)
+        })
+        .buttonStyle(.bordered)
+        .tint(.green)
+        .sheet(isPresented: $isShowingSheet) {
+            AddRecipeForm()
+        }
     }
 }
