@@ -33,6 +33,7 @@ struct PersonalRecipeListView: View {
             .navigationTitle("Mes recettes")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    if !addRecipesVM.myRecipes.isEmpty {
                     Button(action: {
                         addRecipesVM.isSheetOn.toggle()
                     }, label: {
@@ -42,6 +43,7 @@ struct PersonalRecipeListView: View {
                         .sheet(isPresented: $addRecipesVM.isSheetOn) {
                             AddRecipeForm()
                         }
+                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
