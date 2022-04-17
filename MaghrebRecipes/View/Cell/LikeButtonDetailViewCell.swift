@@ -16,21 +16,17 @@ struct LikeButtonDetailViewCell: View {
     var body: some View {
         Button(action: {
             favoriteVM.addOrRemove(recipe: recipe)
-            isAnimate = true
             self.favoriteVM.addOrRemoveHaptic(recipe: recipe)
+            isAnimate = true
         }, label: {
             Image(systemName: favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart")
         })
-        .scaleEffect(isAnimate && favoriteVM.favoritesRecipes.contains(recipe) ? 1 : 0.9)
+        .scaleEffect(isAnimate && favoriteVM.favoritesRecipes.contains(recipe) ? 1.04: 0.95)
         .animation(.spring(
             response: 0.5,
             dampingFraction: 0.5,
             blendDuration: 0.5)
-        )
-        
-        .buttonPersonnalStyle()
-        
-        
+        ).buttonPersonnalStyle()
     }
 }
 
