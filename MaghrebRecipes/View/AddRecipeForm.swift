@@ -59,7 +59,20 @@ struct AddRecipeForm: View {
                     
                 }
                 
-                AddPersonnalRecipeButton(title: $title, price: $price, description: $description, ingredients: $ingredients, recipeCategory: $recipeCategory)
+                Button(action: {
+                    if !title.isEmpty && !description.isEmpty {
+                        //                 addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
+                        recipeVM.addRecipeButton(title: title, price: price, description: description, ingredient: ingredients, category: recipeCategory)
+                        self.presentationMode.wrappedValue.dismiss()
+                        self.recipeVM.simpleSuccesHaptic()
+                    }
+                }, label: {
+                    Label("Créer ma recette", systemImage: "book.closed")
+                        .font(.title2)
+                })
+                .padding(.bottom)
+                .buttonPersonnalStyle(colorModifier: !title.isEmpty && !description.isEmpty ? .green : .secondary)
+                .buttonStyle(.bordered)
             }
             
             .toolbar {
@@ -72,7 +85,11 @@ struct AddRecipeForm: View {
                     }
                 }
                 ToolbarItem {
-                   DismissSheetButtonView()
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Image(systemName: "chevron.down")
+                    }).foregroundStyle(.green)
                 }
             }
             .navigationTitle("Ajouter une recette")
@@ -136,46 +153,5 @@ struct  RecipePriceExtractedView: View {
         TextField("13.5€", text: $price)
             .keyboardType(.decimalPad)
         
-    }
-}
-
-struct AddPersonnalRecipeButton: View {
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var recipeVM: AddRecipeViewModel
-    
-    @Binding public var title: String
-    @Binding public var price: String
-    @Binding public var description: String
-    @Binding public var ingredients: String
-    @Binding public var recipeCategory: RecipeCategory
-
-
-    var body: some View {
-        Button(action: {
-            if !title.isEmpty && !description.isEmpty {
-//                 addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
-                recipeVM.addRecipeButton(title: title, price: price, description: description, ingredient: ingredients, category: recipeCategory)
-                self.presentationMode.wrappedValue.dismiss()
-                self.recipeVM.simpleSuccesHaptic()
-            }
-        }, label: {
-            Label("Créer ma recette", systemImage: "book.closed")
-                .font(.title2)
-        })
-        .padding(.bottom)
-        .buttonPersonnalStyle(colorModifier: !title.isEmpty && !description.isEmpty ? .green : .secondary)
-        .buttonStyle(.bordered)
-    }
-}
-
-struct DismissSheetButtonView: View {
-    @Environment(\.presentationMode) var presentationMode
-
-    var body: some View {
-        Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-        }, label: {
-            Image(systemName: "chevron.down")
-        }).foregroundStyle(.green)
     }
 }
