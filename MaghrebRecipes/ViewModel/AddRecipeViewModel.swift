@@ -12,13 +12,13 @@ class AddRecipeViewModel: ObservableObject {
     @Published var myRecipes: [RecipeModel] = []
     @Published var isSheetOn = false
     
-    func createRecipe(title : String, price : String, description: String, category : RecipeCategory) {
-        let recipe = RecipeModel(title: title, price: Double(price.replacingOccurrences(of: ",", with: ".")) ?? 1, photo: "", description: description, recipCategory: category)
+    func createRecipe(title : String, price : String, description: String, ingredients: [String], category : RecipeCategory) {
+        let recipe = RecipeModel(title: title, price: Double(price.replacingOccurrences(of: ",", with: ".")) ?? 1, photo: "", description: description,ingredients: Array(ingredients), recipCategory: category)
         self.myRecipes.insert(recipe, at: 0)
     }
     
-    func addRecipeButton(title : String, price : String, description: String, category : RecipeCategory) {
-        createRecipe(title: title, price: price, description: description, category: category)
+    func addRecipeButton(title : String, price : String, description: String, ingredient: String, category : RecipeCategory) {
+        createRecipe(title: title, price: price, description: description, ingredients: Array(arrayLiteral: ingredient), category: category)
     }
     
     func delet(at offsets: IndexSet) {

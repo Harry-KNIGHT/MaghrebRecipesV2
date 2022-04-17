@@ -36,7 +36,7 @@ struct Navigation: ViewModifier {
             .navigationBarItems(trailing: Button(action: {
                 favoriteVM.addOrRemove(recipe: recipe)
             }, label: {
-                LikeButtonCell(recipe: recipe)
+                LikeButtonDetailViewCell(recipe: recipe)
                     
             }).foregroundColor(Color.green))
             
@@ -52,12 +52,12 @@ struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                RecipeDetailView(recipe:  RecipeModel(title: "Maakouda", price: 7, photo: "maakouda", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", recipCategory: .entry))
+               RecipeDetailView(recipe:  RecipeModel(title: "Maakouda", price: 7, photo: "maakouda", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", ingredients: ["Boeuf", "4 oeufs"], recipCategory: .entry))
                     .environmentObject(FavoriteViewModel())
                     .environmentObject(AddRecipeViewModel())
             }
             NavigationView {
-                RecipeDetailView(recipe:  RecipeModel(title: "Maakouda", price: 7, photo: "", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", recipCategory: .entry))
+                RecipeDetailView(recipe:  RecipeModel(title: "Maakouda", price: 7, photo: "maakouda", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", ingredients: ["Boeuf", "4 oeufs"], recipCategory: .entry))
                     .environmentObject(FavoriteViewModel())
                     .environmentObject(AddRecipeViewModel())
             }
