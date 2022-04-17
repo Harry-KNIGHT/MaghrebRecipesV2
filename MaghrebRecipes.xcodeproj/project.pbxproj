@@ -172,9 +172,9 @@
 			isa = PBXGroup;
 			children = (
 				3C61146227F32BFC00541FBC /* RecipeListView.swift */,
-				3CD517B72806FD1600A6F921 /* LazyHGridView.swift */,
 				3CFABDD12800C84E00546812 /* PersonalRecipeListView.swift */,
 				3C2CA7F727F49F81008962A4 /* FavoritesView.swift */,
+				3CD517B72806FD1600A6F921 /* LazyHGridView.swift */,
 			);
 			path = Lists;
 			sourceTree = "<group>";
