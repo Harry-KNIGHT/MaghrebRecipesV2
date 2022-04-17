@@ -32,3 +32,20 @@ struct LikeButtonDetailViewCell_Previews: PreviewProvider {
         }
     }
 }
+
+struct ShowLikedSheetButtonExtractedView: View {
+    @ObservedObject var favoriteVM = FavoriteViewModel.init()
+    
+    var body: some View {
+        Button(action: {
+            favoriteVM.isSheetOn.toggle()
+        }, label: {
+            Label("Liked recipes view", systemImage: "heart.circle.fill")
+            
+        }).buttonPersonnalStyle()
+        
+            .sheet(isPresented: $favoriteVM.isSheetOn) {
+                FavoritesView()
+            }
+    }
+}
