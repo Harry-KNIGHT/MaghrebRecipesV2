@@ -30,6 +30,17 @@ struct AddRecipeForm: View {
                             .focused($isFocused)
                     }
                     
+                    Section(header: Text("Remplir les champs")) {
+                        Button(action: {
+                            title = "Tajine Poulet aux Olives"
+                            description = "Tajine de poulet aux olives généreuses"
+                            price = "13.45"
+                            ingredients = "450G de poulet"
+                        }, label: {
+                            Label("Remplir le formulaire", systemImage: "plus.circle")
+                        })
+                    }
+                    
                     Section(header: Text("Type de recette")) {
                         RecipeTypePickerView(category: $recipeCategory)
                         
@@ -61,11 +72,7 @@ struct AddRecipeForm: View {
                     }
                 }
                 ToolbarItem {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image(systemName: "chevron.down")
-                    }).foregroundStyle(.green)
+                   DismissSheetButtonView()
                 }
             }
             .navigationTitle("Ajouter une recette")
@@ -146,9 +153,9 @@ struct AddPersonnalRecipeButton: View {
     var body: some View {
         Button(action: {
             if !title.isEmpty && !description.isEmpty {
-                // addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
+//                 addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
                 recipeVM.addRecipeButton(title: title, price: price, description: description, ingredient: ingredients, category: recipeCategory)
-                presentationMode.wrappedValue.dismiss()
+                self.presentationMode.wrappedValue.dismiss()
                 self.recipeVM.simpleSuccesHaptic()
             }
         }, label: {
@@ -156,7 +163,19 @@ struct AddPersonnalRecipeButton: View {
                 .font(.title2)
         })
         .padding(.bottom)
-        .buttonPersonnalStyle(colorModifier: !title.isEmpty && !description.isEmpty ? .blue : .secondary)
+        .buttonPersonnalStyle(colorModifier: !title.isEmpty && !description.isEmpty ? .green : .secondary)
         .buttonStyle(.bordered)
+    }
+}
+
+struct DismissSheetButtonView: View {
+    @Environment(\.presentationMode) var presentationMode
+
+    var body: some View {
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }, label: {
+            Image(systemName: "chevron.down")
+        }).foregroundStyle(.green)
     }
 }
