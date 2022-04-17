@@ -49,19 +49,21 @@ struct RowCellView: View {
     @ObservedObject var favoriteVM = FavoriteViewModel.init()
     
     var body: some View {
-        HStack(alignment: .top) {
-            RecipeImageView(recipe: recipe)
-            VStack(alignment: .leading, spacing: 10) {
-                Text(recipe.title)
-                    .font(.headline)
-                Text(recipe.description)
-                    .lineLimit(2)
-                    .foregroundColor(.secondary)
-            }
-            Spacer()
-            if favoriteVM.favoritesRecipes.contains(recipe) {
-                LikeButtonDetailViewCell(recipe: recipe)
-                
+        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+            HStack(alignment: .top) {
+                RecipeImageView(recipe: recipe)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(recipe.title)
+                        .font(.headline)
+                    Text(recipe.description)
+                        .lineLimit(2)
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+                if favoriteVM.favoritesRecipes.contains(recipe) {
+                    LikeButtonDetailViewCell(recipe: recipe)
+                    
+                }
             }
         }
     }
@@ -73,16 +75,15 @@ struct ExtractedMainListView: View {
             ForEach(RecipeCategory.allCases, id: \.self) { section in
                 Section(header: Text(section.rawValue)) {
                     ForEach(recipes.filter({ $0.recipCategory == section })) { recipe in
-                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                            RowCellView(recipe: recipe)
-                        }
+                        RowCellView(recipe: recipe)
                     }
                 }
-            }
+            
         }
+    }
         .listStyle(.plain)
         .frame(height: 1000)
-    }
+}
 }
 
 

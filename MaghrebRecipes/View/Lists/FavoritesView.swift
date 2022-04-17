@@ -68,9 +68,7 @@ struct ExtractedFavoriteListView: View {
         List {
             Section {
                 ForEach(favoriteVM.favoritesRecipes) { recipe in
-                    NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                         RowCellView(recipe: recipe)
-                    }
                 }
                 .onDelete(perform: favoriteVM.delet)
                 .onMove(perform: favoriteVM.move)
