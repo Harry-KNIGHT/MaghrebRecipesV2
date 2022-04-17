@@ -17,7 +17,7 @@ struct ButtonModifier: ViewModifier {
             .buttonStyle(.bordered)
             .font(fontModifier)
             .tint(colorModifier)
-            .foregroundColor(.green)
+            .foregroundColor(colorModifier)
     }
 }
 
