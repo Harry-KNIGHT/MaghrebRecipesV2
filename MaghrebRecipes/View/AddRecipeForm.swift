@@ -16,6 +16,7 @@ struct AddRecipeForm: View {
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var price: String = ""
+    @State private var ingredients: String = ""
     @State private var recipeCategory : RecipeCategory = .dish
     
     
@@ -28,31 +29,38 @@ struct AddRecipeForm: View {
                         RecipeFormExtractedView(titleKey: "Tajine Zeitoune", recipeField: $title)
                             .focused($isFocused)
                     }
-                    Section(header: Text("Prix moyen")) {
-                        
-                        RecipePriceExtractedView(price: $price)
-                    }
+                    
                     Section(header: Text("Type de recette")) {
                         RecipeTypePickerView(category: $recipeCategory)
                         
                     }
-                    
+                    Section(header: Text("Prix moyen")) {
+                        RecipePriceExtractedView(price: $price)
+                    }
+                    Section(header: Text("Ingrédients")) {
+                        TextField("350G de beurre", text: $ingredients)
+                        Button(action: {}, label: { Label("Ingrédient", systemImage: "plus.circle.fill")}).buttonPersonnalStyle(.headline)
+                    }
                     Section(header: Text("Description")) {
                         DescriptionView(description: $description)
                             .focused($isFocused)
                     }
+                    
                 }
+                
                 Button(action: {
                     if !title.isEmpty && !description.isEmpty {
                         // addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
-                        recipeVM.addRecipeButton(title: title, price: price, description: description, category: recipeCategory)
+                        recipeVM.addRecipeButton(title: title, price: price, description: description, ingredient: ingredients, category: recipeCategory)
                         presentationMode.wrappedValue.dismiss()
                         self.recipeVM.simpleSuccesHaptic()
                     }
                 }, label: {
                     Label("Créer ma recette", systemImage: "book.closed")
                         .font(.title2)
-                }).padding(.bottom)
+                })
+                .padding(.bottom)
+                .buttonPersonnalStyle(colorModifier: !title.isEmpty && !description.isEmpty ? .green : .secondary)
                     .buttonStyle(.bordered)
                     .tint(!title.isEmpty && !description.isEmpty ? .green : .secondary)
             }
