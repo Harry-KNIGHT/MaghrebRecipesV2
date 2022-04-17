@@ -18,31 +18,12 @@ struct RecipeListView: View {
                 ExtractedMainListView()
             }
             .navigationTitle("Recettes")
-            // Navigation Bar
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        addRecipeVM.isSheetOn.toggle()
-                    }, label: {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.title2)
-                    }).foregroundColor(Color.green)
-                        .accessibility(label: Text("Go to your favorites recipes"))
-                        .sheet(isPresented: $addRecipeVM.isSheetOn) {
-                            AddRecipeForm()
-                        }
-                    
+                    CreateRecipeButtonCell()
                 }
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button(action: {
-                        favoriteVM.isSheetOn.toggle()
-                    }, label: {
-                        Image(systemName: "heart.circle.fill")
-                            .font(.title2)
-                    }).foregroundColor(Color.green)
-                        .sheet(isPresented: $favoriteVM.isSheetOn) {
-                            FavoritesView()
-                        }
+                    ShowLikedSheetButtonExtractedView()
                 }
             }
         }
@@ -66,22 +47,22 @@ struct RecipeListView_Previews: PreviewProvider {
 struct RowCellView: View {
     let recipe: RecipeModel
     @ObservedObject var favoriteVM = FavoriteViewModel.init()
-
+    
     var body: some View {
-            HStack(alignment: .top) {
-                RecipeImageView(recipe: recipe)
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(recipe.title)
-                        .font(.headline)
-                    Text(recipe.description)
-                        .lineLimit(2)
-                        .foregroundColor(.secondary)
-                }
-                Spacer()
-                if favoriteVM.favoritesRecipes.contains(recipe) {
-                    LikeButtonCell(recipe: recipe)
-                    
-                }
+        HStack(alignment: .top) {
+            RecipeImageView(recipe: recipe)
+            VStack(alignment: .leading, spacing: 10) {
+                Text(recipe.title)
+                    .font(.headline)
+                Text(recipe.description)
+                    .lineLimit(2)
+                    .foregroundColor(.secondary)
+            }
+            Spacer()
+            if favoriteVM.favoritesRecipes.contains(recipe) {
+                LikeButtonDetailViewCell(recipe: recipe)
+                
+            }
         }
     }
 }
@@ -93,7 +74,7 @@ struct ExtractedMainListView: View {
                 Section(header: Text(section.rawValue)) {
                     ForEach(recipes.filter({ $0.recipCategory == section })) { recipe in
                         NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                        RowCellView(recipe: recipe)
+                            RowCellView(recipe: recipe)
                         }
                     }
                 }
@@ -101,5 +82,22 @@ struct ExtractedMainListView: View {
         }
         .listStyle(.plain)
         .frame(height: 1000)
+    }
+}
+
+struct ShowLikedSheetButtonExtractedView: View {
+    @ObservedObject var favoriteVM = FavoriteViewModel.init()
+    
+    var body: some View {
+        Button(action: {
+            favoriteVM.isSheetOn.toggle()
+        }, label: {
+            Label("Liked recipes view", systemImage: "heart.circle.fill")
+            
+        }).buttonPersonnalStyle()
+        
+            .sheet(isPresented: $favoriteVM.isSheetOn) {
+                FavoritesView()
+            }
     }
 }

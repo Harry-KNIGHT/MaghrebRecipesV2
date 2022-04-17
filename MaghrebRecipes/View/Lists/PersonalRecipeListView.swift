@@ -15,17 +15,18 @@ struct PersonalRecipeListView: View {
             VStack {
                 if !addRecipesVM.myRecipes.isEmpty {
                     ZStack {
-                    ExtractedPersonalRecipesListView()
+                        ExtractedPersonalRecipesListView()
                     }
                 }else {
                     ZStack {
                         VStack {
-                           
-                    EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée")
-                        .multilineTextAlignment(.center)
-                
-                        CreateButtonFormEctractedView(isShowingSheet: $isShowingSheet)
-                           
+                            
+                            EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée")
+                                .multilineTextAlignment(.center)
+                            
+                            CreateRecipeButtonCellExtractedView()
+                         
+                            
                         }
                     }
                 }
@@ -34,15 +35,8 @@ struct PersonalRecipeListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if !addRecipesVM.myRecipes.isEmpty {
-                    Button(action: {
-                        addRecipesVM.isSheetOn.toggle()
-                    }, label: {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.title2)
-                    }).foregroundStyle(.green)
-                        .sheet(isPresented: $addRecipesVM.isSheetOn) {
-                            AddRecipeForm()
-                        }
+                        CreateRecipeButtonCell()
+                        
                     }
                 }
                 
@@ -81,25 +75,5 @@ struct ExtractedPersonalRecipesListView: View {
             } .onDelete(perform: addRecipesVM.delet)
                 .onMove(perform: addRecipesVM.move)
         }.listStyle(.plain)
-    }
-}
-
-
-struct CreateButtonFormEctractedView: View {
-    @Binding var isShowingSheet: Bool
-    
-    var body: some View {
-        Button(action: {
-           
-            isShowingSheet = true
-        }, label: {
-            Label("Créer une recette", systemImage: "book.closed")
-                .font(.title)
-        })
-        .buttonStyle(.bordered)
-        .tint(.green)
-        .sheet(isPresented: $isShowingSheet) {
-            AddRecipeForm()
-        }
     }
 }
