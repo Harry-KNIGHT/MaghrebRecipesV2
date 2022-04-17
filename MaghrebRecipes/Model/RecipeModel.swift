@@ -14,6 +14,7 @@ struct RecipeModel: Identifiable, Equatable {
     let price: Double
     let photo: String
     let description: String
+    let ingredients: [String]
     let recipCategory: RecipeCategory
 }
 
