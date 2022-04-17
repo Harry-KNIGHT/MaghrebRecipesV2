@@ -8,16 +8,29 @@
 import SwiftUI
 
 struct LikeButtonDetailViewCell: View {
-   @EnvironmentObject var favoriteVM: FavoriteViewModel
+    @EnvironmentObject var favoriteVM: FavoriteViewModel
+    @State private var isAnimate: Bool = false
+    @State private var animationAmount: Int = 1
+    @State private var scale: CGFloat = 1
     let recipe: RecipeModel
     var body: some View {
         Button(action: {
             favoriteVM.addOrRemove(recipe: recipe)
+            isAnimate = true
             self.favoriteVM.addOrRemoveHaptic(recipe: recipe)
         }, label: {
             Image(systemName: favoriteVM.favoritesRecipes.contains(recipe) ? "heart.fill" : "heart")
         })
+        .scaleEffect(isAnimate && favoriteVM.favoritesRecipes.contains(recipe) ? 1 : 0.9)
+        .animation(.spring(
+            response: 0.5,
+            dampingFraction: 0.5,
+            blendDuration: 0.5)
+        )
+        
         .buttonPersonnalStyle()
+        
+        
     }
 }
 
