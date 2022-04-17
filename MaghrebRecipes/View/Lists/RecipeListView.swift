@@ -63,8 +63,7 @@ struct RowCellView: View {
                 }
                 if favoriteVM.favoritesRecipes.contains(recipe) {
                     Image(systemName: "heart.fill")
-                        .foregroundColor(.green)
-                        .font(.headline)
+                        .buttonPersonnalStyle(.headline)
                 }
                 
             }
@@ -84,7 +83,7 @@ struct ExtractedMainListView: View {
                 
             }
         }
-        .listStyle(.plain)
+        .listStyle(.inset)
         .frame(height: 1000)
     }
 }
