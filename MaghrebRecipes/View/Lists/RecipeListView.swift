@@ -46,24 +46,27 @@ struct RecipeListView_Previews: PreviewProvider {
 
 struct RowCellView: View {
     let recipe: RecipeModel
-    @ObservedObject var favoriteVM = FavoriteViewModel.init()
+    @EnvironmentObject var favoriteVM: FavoriteViewModel
     
     var body: some View {
         NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
             HStack(alignment: .top) {
                 RecipeImageView(recipe: recipe)
                 VStack(alignment: .leading, spacing: 10) {
+                    
                     Text(recipe.title)
                         .font(.headline)
+                        .lineLimit(1)
                     Text(recipe.description)
                         .lineLimit(2)
                         .foregroundColor(.secondary)
                 }
-                Spacer()
                 if favoriteVM.favoritesRecipes.contains(recipe) {
-                    LikeButtonDetailViewCell(recipe: recipe)
-                    
+                    Image(systemName: "heart.fill")
+                        .foregroundColor(.accentColor)
+                        .font(.headline)
                 }
+                
             }
         }
     }
@@ -78,12 +81,12 @@ struct ExtractedMainListView: View {
                         RowCellView(recipe: recipe)
                     }
                 }
-            
+                
+            }
         }
-    }
         .listStyle(.plain)
         .frame(height: 1000)
-}
+    }
 }
 
 
