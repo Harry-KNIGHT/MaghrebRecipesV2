@@ -14,9 +14,7 @@ struct PersonalRecipeListView: View {
         NavigationView {
             VStack {
                 if !addRecipesVM.myRecipes.isEmpty {
-                    ZStack {
                         ExtractedPersonalRecipesListView()
-                    }
                 }else {
                     ZStack {
                         VStack {
