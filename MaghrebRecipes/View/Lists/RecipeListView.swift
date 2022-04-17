@@ -63,7 +63,7 @@ struct RowCellView: View {
                 }
                 if favoriteVM.favoritesRecipes.contains(recipe) {
                     Image(systemName: "heart.fill")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(.green)
                         .font(.headline)
                 }
                 
