@@ -89,7 +89,7 @@ struct AddRecipeForm: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Image(systemName: "chevron.down")
-                    }).foregroundStyle(.green)
+                    }).buttonPersonnalStyle()
                 }
             }
             .navigationTitle("Ajouter une recette")

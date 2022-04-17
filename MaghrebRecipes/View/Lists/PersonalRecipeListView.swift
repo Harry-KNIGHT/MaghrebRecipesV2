@@ -43,7 +43,7 @@ struct PersonalRecipeListView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     if !addRecipesVM.myRecipes.isEmpty {
                         EditButton()
-                            .foregroundStyle(.green)
+                            .buttonPersonnalStyle(.title3, colorModifier: .accentColor)
                     }
                 }
             }

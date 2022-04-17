@@ -25,9 +25,11 @@ struct FavoritesView: View {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     
                     if !favoriteVM.favoritesRecipes.isEmpty {
-                        Button("Vider") {
+                        Button(action: {
                             favoriteVM.isPresented = true
-                        }.foregroundStyle(.green)
+                        }, label: {
+                            Label("Supprimer tous les favoris", systemImage: "trash.circle.fill")
+                        }).buttonPersonnalStyle()
                             .alert("Supprimer tous vos favoris ?", isPresented: $favoriteVM.isPresented) {
                                 Button("Delet", role: .destructive) {
                                     favoriteVM.removeAllFavoriteRecipes()
@@ -43,7 +45,7 @@ struct FavoritesView: View {
                     }, label: {
                         Image(systemName: "chevron.down")
                             .foregroundStyle(.green)
-                    })
+                    }).buttonPersonnalStyle()
                 }
             }
         }
