@@ -18,7 +18,7 @@ struct RecipeModel: Identifiable, Equatable {
     let recipCategory: RecipeCategory
     let recipeDifficulty: RecipeDifficulty
     let recipeAveragePrice: RecipeAveragePrice
-    let valueTimeCooking: Int
+    let valueTimeCooking: Double
     let timeToCook: TimeToCook
 }
 

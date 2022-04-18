@@ -107,7 +107,7 @@ struct AddRecipeForm: View {
                 Button(action: {
                     if !title.isEmpty && !description.isEmpty {
                         //                 addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
-                        recipeVM.addRecipeButton(title: title, photo: photo, description: description, allIngredients: allIngredients, category: recipeCategory, difficulty: recipeDifficulty, averagePrice: recipeAveragePrice, cookingTime: Int(recipeValueTimeCooking) ?? 0, timeToCook: recipeTimeToCook)
+                        recipeVM.addRecipeButton(title: title, photo: photo, description: description, allIngredients: allIngredients, category: recipeCategory, difficulty: recipeDifficulty, averagePrice: recipeAveragePrice, cookingTime: Double(recipeValueTimeCooking) ?? 0, timeToCook: recipeTimeToCook)
                         self.presentationMode.wrappedValue.dismiss()
                         self.recipeVM.simpleSuccesHaptic()
                     }
