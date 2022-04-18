@@ -28,9 +28,9 @@ struct LazyHGridCell: View {
 struct LazyHGridCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LazyHGridCell(recipe: RecipeModel(title: "Maakdoua", photo: "maakouda", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", ingredients: ["Pomme de terre", "Huile d'olive", "Origan"], recipCategory: .entry, recipeDifficulty: .easy, recipeAveragePrice: .cheap, valueTimeCooking: 25, timeToCook: .minute))
+            LazyHGridCell(recipe: RecipeModel(title: "Maakdoua", photo: "gazelle", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", ingredients: ["Pomme de terre", "Huile d'olive", "Origan"], recipCategory: .entry, recipeDifficulty: .easy, recipeAveragePrice: .cheap, valueTimeCooking: 25, timeToCook: .minute, vegetarianRecipe: true))
             
-            LazyHGridCell(recipe: RecipeModel(title: "Maakdoua", photo: "maakouda", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", ingredients: ["Pomme de terre", "Huile d'olive", "Origan"], recipCategory: .entry, recipeDifficulty: .easy, recipeAveragePrice: .cheap, valueTimeCooking: 25, timeToCook: .minute))
+            LazyHGridCell(recipe: RecipeModel(title: "Maakdoua", photo: "maakouda", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", ingredients: ["Pomme de terre", "Huile d'olive", "Origan"], recipCategory: .entry, recipeDifficulty: .easy, recipeAveragePrice: .cheap, valueTimeCooking: 25, timeToCook: .minute, vegetarianRecipe: false))
                 .preferredColorScheme(.dark)
         }
     }
@@ -67,8 +67,18 @@ struct LazyHGridImageCellView: View {
     let width: CGFloat = 180
     let height: CGFloat = 110
     var body: some View {
+        ZStack(alignment: .bottomTrailing) {
         Image(recipe.photo).resizable()
             .frame(width: width, height: height, alignment: .center)
             .clipShape(CustomPath(radius: 20, corners: [.topLeft, .topRight]))
+            if recipe.vegetarianRecipe {
+               Image(systemName: "leaf")
+                    .font(.title2)
+                    .padding(4)
+                    .foregroundColor(.green)
+                    .background(.black)
+                    .clipShape(CustomPath(radius: 10, corners: [.topLeft]))
+            }
+        }
     }
 }
