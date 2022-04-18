@@ -20,6 +20,7 @@ struct RecipeModel: Identifiable, Equatable {
     let recipeAveragePrice: RecipeAveragePrice
     let valueTimeCooking: Double
     let timeToCook: TimeToCook
+    let vegetarianRecipe: Bool 
 }
 
 /// Category of recipes
