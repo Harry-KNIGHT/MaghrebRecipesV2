@@ -15,10 +15,15 @@ struct AddRecipeForm: View {
     // we declare State variables for each component of our recipe
     @State private var title: String = ""
     @State private var description: String = ""
-    @State private var price: String = ""
+    @State private var photo: String = ""
+//    @State private var price: String = ""
     @State private var ingredient: String = ""
     @State private var recipeCategory : RecipeCategory = .dish
     @State private var allIngredients = [String]()
+    @State private var recipeDifficulty: RecipeDifficulty = .easy
+    @State private var recipeAveragePrice: RecipeAveragePrice = .cheap
+    @State private var recipeValueTimeCooking: String = ""
+    @State private var recipeTimeToCook: TimeToCook = .hour
     
     var body: some View {
         NavigationView {
@@ -34,19 +39,45 @@ struct AddRecipeForm: View {
                         Button(action: {
                             title = "Tajine Poulet aux Olives"
                             description = "Tajine de poulet aux olives généreuses"
-                            price = "13.45"
                             ingredient = "450G de poulet"
+                            recipeValueTimeCooking = "25"
                         }, label: {
                             Label("Remplir le formulaire", systemImage: "plus.circle")
                         })
                     }
                     
+                    Section("Temps de préparation") {
+                        TextField("12", text: $recipeValueTimeCooking)
+                        Picker("Durée", selection: $recipeTimeToCook) {
+                            ForEach(TimeToCook.allCases, id: \.self) { time in
+                                Text(String(time.rawValue))
+                                    .keyboardType(.decimalPad)
+                            }
+                        }.pickerStyle(.automatic)
+                    }
+                    
+                    
+                    Section("Difficulté") {
+                        Picker("Difficulté de préparation", selection: $recipeDifficulty) {
+                            ForEach(RecipeDifficulty.allCases, id: \.self) {
+                                Text($0.rawValue)
+                            }
+                        }
+                    }
+                    
+                    
+                    Section("Prix") {
+                        Picker("Prix moyen", selection: $recipeAveragePrice) {
+                            ForEach(RecipeAveragePrice.allCases, id: \.self) {
+                                Text($0.rawValue)
+                            }
+                        }
+                    }
+                    
+                    
                     Section(header: Text("Type de recette")) {
                         RecipeTypePickerView(category: $recipeCategory)
                         
-                    }
-                    Section(header: Text("Prix moyen")) {
-                        RecipePriceExtractedView(price: $price)
                     }
                     
                     Section(header: Text("Ingrédients")) {
@@ -55,6 +86,7 @@ struct AddRecipeForm: View {
                                 Text(ingredient)
                             }.onDelete(perform: deletIndgredient )
                         }
+                        
                         TextField("350G de beurre", text: $ingredient)
                             .keyboardType(.alphabet)
                         Button(action: {
@@ -75,7 +107,7 @@ struct AddRecipeForm: View {
                 Button(action: {
                     if !title.isEmpty && !description.isEmpty {
                         //                 addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
-                        recipeVM.addRecipeButton(title: title, price: price, description: description, allIngredients: allIngredients, category: recipeCategory)
+                        recipeVM.addRecipeButton(title: title, photo: photo, description: description, allIngredients: allIngredients, category: recipeCategory, difficulty: recipeDifficulty, averagePrice: recipeAveragePrice, cookingTime: Int(recipeValueTimeCooking) ?? 0, timeToCook: recipeTimeToCook)
                         self.presentationMode.wrappedValue.dismiss()
                         self.recipeVM.simpleSuccesHaptic()
                     }
@@ -147,28 +179,15 @@ struct RecipeTypePickerView: View {
                 Text($0.rawValue)
             }
         }
-        .pickerStyle(.segmented)
+        .pickerStyle(.automatic)
     }
 }
 
 struct DescriptionView: View {
-    
     // we have a binding there, in order to propagate the change to the parent view (variable is defined as a State porperty wrapper in the parent view, and a Binding property wrapper in the child view)
     @Binding var description : String
     
     var body: some View {
         TextEditor(text: $description)
-    }
-}
-
-struct  RecipePriceExtractedView: View {
-    
-    // we have a binding there, in order to propagate the change to the parent view (variable is defined as a State porperty wrapper in the parent view, and a Binding property wrapper in the child view)
-    @Binding var price : String
-    
-    var body: some View {
-        TextField("13.5€", text: $price)
-            .keyboardType(.decimalPad)
-        
     }
 }
