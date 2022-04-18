@@ -50,21 +50,25 @@ struct RowCellView: View {
     
     var body: some View {
         NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-            HStack(alignment: .top) {
+            HStack(alignment: .center) {
                 RecipeImageView(recipe: recipe)
-                VStack(alignment: .leading, spacing: 10) {
-                    
+                VStack(alignment: .leading, spacing: 7) {
+                    HStack {
                     Text(recipe.title)
                         .font(.headline)
                         .lineLimit(1)
+                        Spacer()
+                        if favoriteVM.favoritesRecipes.contains(recipe) {
+                            Image(systemName: "heart.fill")
+                                .buttonPersonnalStyle(.headline)
+                        }
+                    }
                     Text(recipe.description)
+                        .font(.subheadline)
                         .lineLimit(2)
                         .foregroundColor(.secondary)
                 }
-                if favoriteVM.favoritesRecipes.contains(recipe) {
-                    Image(systemName: "heart.fill")
-                        .buttonPersonnalStyle(.headline)
-                }
+               
                 
             }
         }
