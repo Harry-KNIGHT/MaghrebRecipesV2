@@ -52,12 +52,13 @@ struct RowCellView: View {
         NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
             HStack(alignment: .center) {
                 RecipeImageView(recipe: recipe)
-                VStack(alignment: .leading, spacing: 7) {
+                VStack(alignment: .leading, spacing: 5) {
                     HStack {
                     Text(recipe.title)
                         .font(.headline)
                         .lineLimit(1)
                         Spacer()
+                        
                         if favoriteVM.favoritesRecipes.contains(recipe) {
                             Image(systemName: "heart.fill")
                                 .buttonPersonnalStyle(.headline)
@@ -68,8 +69,6 @@ struct RowCellView: View {
                         .lineLimit(2)
                         .foregroundColor(.secondary)
                 }
-               
-                
             }
         }
     }

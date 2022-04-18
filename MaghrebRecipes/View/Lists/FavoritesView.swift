@@ -87,7 +87,7 @@ struct FavoriteRowCellView: View {
     var body: some View {
         NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
             HStack(alignment: .top) {
-                RecipeImageView(recipe: recipe)
+                RecipeImageView(recipe: recipe, isShowingVege: true)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(recipe.title)
                         .font(.headline)
