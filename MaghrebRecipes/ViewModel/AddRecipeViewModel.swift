@@ -12,13 +12,13 @@ class AddRecipeViewModel: ObservableObject {
     @Published var myRecipes: [RecipeModel] = []
     @Published var isSheetOn = false
     
-    func createRecipe(title : String, photo: String, description: String, allIngredients: [String], category : RecipeCategory, difficulty: RecipeDifficulty, averagePrice: RecipeAveragePrice, cookingTime: Double, timeToCook: TimeToCook) {
-        let recipe = RecipeModel(title: title, photo: photo, description: description,ingredients: allIngredients, recipCategory: category, recipeDifficulty: difficulty, recipeAveragePrice: averagePrice, valueTimeCooking: cookingTime, timeToCook: timeToCook)
+    func createRecipe(title : String, photo: String, description: String, allIngredients: [String], category : RecipeCategory, difficulty: RecipeDifficulty, averagePrice: RecipeAveragePrice, cookingTime: Double, timeToCook: TimeToCook, vegetarianRecipe: Bool) {
+        let recipe = RecipeModel(title: title, photo: photo, description: description,ingredients: allIngredients, recipCategory: category, recipeDifficulty: difficulty, recipeAveragePrice: averagePrice, valueTimeCooking: cookingTime, timeToCook: timeToCook, vegetarianRecipe: vegetarianRecipe)
         self.myRecipes.insert(recipe, at: 0)
     }
     
-    func addRecipeButton(title : String, photo: String, description: String, allIngredients: [String], category : RecipeCategory, difficulty: RecipeDifficulty, averagePrice: RecipeAveragePrice, cookingTime: Double, timeToCook: TimeToCook) {
-        createRecipe(title: title, photo: photo, description: description, allIngredients: allIngredients , category: category, difficulty: difficulty, averagePrice: averagePrice, cookingTime: cookingTime, timeToCook: timeToCook)
+    func addRecipeButton(title : String, photo: String, description: String, allIngredients: [String], category : RecipeCategory, difficulty: RecipeDifficulty, averagePrice: RecipeAveragePrice, cookingTime: Double, timeToCook: TimeToCook, vegetarienRecipe: Bool) {
+        createRecipe(title: title, photo: photo, description: description, allIngredients: allIngredients , category: category, difficulty: difficulty, averagePrice: averagePrice, cookingTime: cookingTime, timeToCook: timeToCook, vegetarianRecipe: vegetarienRecipe)
     }
     
     func delet(at offsets: IndexSet) {
