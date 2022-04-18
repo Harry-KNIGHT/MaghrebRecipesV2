@@ -17,17 +17,14 @@ struct RecipeDetailView: View {
                 RecipeImageView(recipe: recipe, width: 355, height: 220)
                 RecipeTitleCategoryDetailEctractedView(recipe: recipe)
                 HStack {
+                    MainInformationExtractedView(text: "\(recipe.valueTimeCooking.formatted()) \(recipe.timeToCook.rawValue.lowercased())", sfSymbol: "hourglass.circle.fill")
+                    Spacer()
                     MainInformationExtractedView(text: recipe.recipeAveragePrice.rawValue, sfSymbol: "eurosign.circle.fill")
                     
-                    Spacer()
-                    
+                Spacer()
                     MainInformationExtractedView(text: recipe.recipeDifficulty.rawValue, sfSymbol: "flag.circle.fill")
                     
-                    Spacer()
-                    
-                    MainInformationExtractedView(text: "\(recipe.valueTimeCooking) \(recipe.timeToCook.rawValue)", sfSymbol: "hourglass.circle.fill")
-                    
-                }
+                }//.padding(.horizontal)
                 HStack(alignment: .top) {
                     Text("Ingrédients:")
                         .font(.headline)
@@ -70,7 +67,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                RecipeDetailView(recipe:  RecipeModel(title: "Maakouda", photo: "maakouda", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", ingredients: ["Boeuf", "4 oeufs", "Citron"], recipCategory: .entry, recipeDifficulty: .medium, recipeAveragePrice: .cheap, valueTimeCooking: 25, timeToCook: .minute))
+                RecipeDetailView(recipe:  RecipeModel(title: "Maakouda", photo: "maakouda", description: "La maaqouda, maqouda ou maakouda est un mets préparé et consommé en Algérie, au Maroc et en Tunisie, essentiellement pendant le mois de ramadan. Il s'agit d'une sorte de beignet de pommes de terre qui peut aussi se décliner avec du thon, de la viande hachée ou du fromage", ingredients: ["Boeuf", "4 oeufs", "Citron"], recipCategory: .entry, recipeDifficulty: .hard, recipeAveragePrice: .expensive, valueTimeCooking: 25.5, timeToCook: .minute))
                     .environmentObject(FavoriteViewModel())
                     .environmentObject(AddRecipeViewModel())
             }
