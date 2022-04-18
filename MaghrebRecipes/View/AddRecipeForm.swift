@@ -16,9 +16,9 @@ struct AddRecipeForm: View {
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var price: String = ""
-    @State private var ingredients: String = ""
+    @State private var ingredient: String = ""
     @State private var recipeCategory : RecipeCategory = .dish
-    
+    @State private var allIngredients = [String]()
     
     var body: some View {
         NavigationView {
@@ -35,7 +35,7 @@ struct AddRecipeForm: View {
                             title = "Tajine Poulet aux Olives"
                             description = "Tajine de poulet aux olives généreuses"
                             price = "13.45"
-                            ingredients = "450G de poulet"
+                            ingredient = "450G de poulet"
                         }, label: {
                             Label("Remplir le formulaire", systemImage: "plus.circle")
                         })
@@ -48,10 +48,23 @@ struct AddRecipeForm: View {
                     Section(header: Text("Prix moyen")) {
                         RecipePriceExtractedView(price: $price)
                     }
+                    
                     Section(header: Text("Ingrédients")) {
-                        TextField("350G de beurre", text: $ingredients)
-                        Button(action: {}, label: { Label("Ingrédient", systemImage: "plus.circle.fill")}).buttonPersonnalStyle(.headline)
-                    }
+                        if !allIngredients.isEmpty {
+                            ForEach(allIngredients, id: \.self) { ingredient in
+                                Text(ingredient)
+                            }.onDelete(perform: deletIndgredient )
+                        }
+                        TextField("350G de beurre", text: $ingredient)
+                            .keyboardType(.alphabet)
+                        Button(action: {
+                            if !ingredient.isEmpty {
+                                allIngredients.append(ingredient)
+                                ingredient = ""
+                            }
+                        }, label: { Label("Ingrédient", systemImage: "plus.circle.fill")}).buttonPersonnalStyle(.headline, colorModifier: !ingredient.isEmpty ? .green : .secondary)
+                    }.focused($isFocused)
+                    
                     Section(header: Text("Description")) {
                         DescriptionView(description: $description)
                             .focused($isFocused)
@@ -62,7 +75,7 @@ struct AddRecipeForm: View {
                 Button(action: {
                     if !title.isEmpty && !description.isEmpty {
                         //                 addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
-                        recipeVM.addRecipeButton(title: title, price: price, description: description, ingredient: ingredients, category: recipeCategory)
+                        recipeVM.addRecipeButton(title: title, price: price, description: description, allIngredients: allIngredients, category: recipeCategory)
                         self.presentationMode.wrappedValue.dismiss()
                         self.recipeVM.simpleSuccesHaptic()
                     }
@@ -95,6 +108,10 @@ struct AddRecipeForm: View {
             .navigationTitle("Ajouter une recette")
             .navigationBarTitleDisplayMode(.inline)
         }
+    }
+    
+    func deletIndgredient(at offsets: IndexSet) {
+        self.allIngredients.remove(atOffsets: offsets)
     }
 }
 
