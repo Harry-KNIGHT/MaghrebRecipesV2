@@ -10,8 +10,12 @@ import SwiftUI
 struct RecipeImageView: View {
     
     let recipe: RecipeModel
-    var width: CGFloat = 130
-    var height: CGFloat = 80
+    var minWidth: CGFloat = 120
+    var minHeight: CGFloat = 50
+    var maxHeight: CGFloat = 80
+    var maxWidth: CGFloat = 160
+    var idealWidth: CGFloat = 130
+    var idealHeight: CGFloat = 80
     var isShowingVege = true
     
     
@@ -23,22 +27,22 @@ struct RecipeImageView: View {
         if !recipe.photo.isEmpty {
             ZStack(alignment: .bottomTrailing) {
                 Image(recipe.photo).resizable()
-                    .frame(width: width, height: height, alignment: .center)
+                    .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth, minHeight: minHeight, idealHeight: idealHeight, maxHeight: maxHeight)
+                    
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                 
                 if recipe.vegetarianRecipe {
                 Image(systemName: "leaf.circle.fill")
                     .font(sfFontSize)
                     .foregroundColor(.green)
-                    .background(colorScheme == .light ?
-                                Color.white.clipShape(Circle()) :  Color.black.clipShape(Circle())
+                    .background(colorScheme == .light ? Color.white.clipShape(Circle()) :  Color.black.clipShape(Circle())
                     ).padding(-2)
                 }
             }
         }else {
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
-                    .frame(width: width, height: height, alignment: .center)
+                    .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth, minHeight: minHeight, idealHeight: idealHeight, maxHeight: maxHeight)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .foregroundColor(.secondary)
                 Text("Maghreb Recipes")
