@@ -37,6 +37,7 @@ struct AddRecipeForm: View {
                     
                     Section(header: Text("Type de recette")) {
                         RecipeTypePickerView(category: $recipeCategory)
+                        Toggle("Végétarien", isOn: $isVegetarian)
                     }
                     
                     Section(header: Text("Ingrédients")) {
@@ -62,6 +63,7 @@ struct AddRecipeForm: View {
                             description = "Tajine de poulet aux olives généreuses"
                             ingredient = "450G de poulet"
                             recipeValueTimeCooking = "30"
+                            isVegetarian = true
                         }, label: {
                             Label("Remplir le formulaire", systemImage: "plus.circle")
                         })
@@ -75,17 +77,13 @@ struct AddRecipeForm: View {
                                     .keyboardType(.decimalPad)
                             }
                         }.pickerStyle(.automatic)
-                    }
-                    
-                    
-                    Section("Difficulté") {
+                        
                         Picker("Difficulté de préparation", selection: $recipeDifficulty) {
                             ForEach(RecipeDifficulty.allCases, id: \.self) {
                                 Text($0.rawValue)
                             }
                         }
                     }
-                    
                     
                     Section("Prix") {
                         Picker("Prix moyen", selection: $recipeAveragePrice) {
