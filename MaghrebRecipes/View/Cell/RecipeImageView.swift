@@ -10,10 +10,10 @@ import SwiftUI
 struct RecipeImageView: View {
     
     let recipe: RecipeModel
-    var minWidth: CGFloat = 120
-    var minHeight: CGFloat = 50
-    var maxHeight: CGFloat = 80
-    var maxWidth: CGFloat = 160
+//    var minWidth: CGFloat = 120
+//    var minHeight: CGFloat = 50
+//    var maxHeight: CGFloat = 80
+//    var maxWidth: CGFloat = 160
     var idealWidth: CGFloat = 130
     var idealHeight: CGFloat = 80
     var isShowingVege = true
@@ -27,11 +27,10 @@ struct RecipeImageView: View {
         if !recipe.photo.isEmpty {
             ZStack(alignment: .bottomTrailing) {
                 Image(recipe.photo).resizable()
-                    .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth, minHeight: minHeight, idealHeight: idealHeight, maxHeight: maxHeight)
-                    
+                    .frame(width: idealWidth, height: idealHeight, alignment: .center)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                 
-                if recipe.vegetarianRecipe {
+                if recipe.vegetarianRecipe && isShowingVege {
                 Image(systemName: "leaf.circle.fill")
                     .font(sfFontSize)
                     .foregroundColor(.green)
@@ -40,15 +39,24 @@ struct RecipeImageView: View {
                 }
             }
         }else {
-            ZStack {
+            ZStack(alignment: .bottomTrailing) {
+                ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 15)
-                    .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth, minHeight: minHeight, idealHeight: idealHeight, maxHeight: maxHeight)
+                    .frame(width: idealWidth, height: idealHeight, alignment: .center)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .foregroundColor(.secondary)
-                Text("Maghreb Recipes")
-                    .foregroundColor(.primary)
-                    .font(.callout)
-            }
+                    Text("Maghreb Recipes")
+                        .foregroundColor(.primary)
+                        .font(.callout)
+                }
+                if recipe.vegetarianRecipe && isShowingVege {
+                Image(systemName: "leaf.circle.fill")
+                    .font(sfFontSize)
+                    .foregroundColor(.green)
+                    .background(colorScheme == .light ? Color.white.clipShape(Circle()) :  Color.black.clipShape(Circle())
+                    ).padding(-2)
+                }
+            }   
         }
     }
 }

@@ -14,7 +14,9 @@ struct RecipeDetailView: View {
     var body: some View {
         VStack {
             List {
-                RecipeImageView(recipe: recipe, minWidth: 250, minHeight: 200, maxHeight: 200, maxWidth: 360, isShowingVege: true)
+                RecipeImageView(recipe: recipe, idealWidth: 350, idealHeight: 200, isShowingVege: true, sfFontSize: .title)
+//                    .frame(width: 350, height: 200)
+
                 
                     
                 RecipeTitleCategoryDetailEctractedView(recipe: recipe)
