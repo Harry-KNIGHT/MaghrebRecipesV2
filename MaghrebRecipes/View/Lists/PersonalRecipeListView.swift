@@ -9,22 +9,18 @@ import SwiftUI
 
 struct PersonalRecipeListView: View {
     @EnvironmentObject var addRecipesVM: AddRecipeViewModel
-    @State private var isShowingSheet = false
+    
     var body: some View {
         NavigationView {
             VStack {
                 if !addRecipesVM.myRecipes.isEmpty {
-                        ExtractedPersonalRecipesListView()
+                    ExtractedPersonalRecipesListView()
                 }else {
                     ZStack {
                         VStack {
-                            
                             EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée")
                                 .multilineTextAlignment(.center)
-                            
-                            CreateRecipeButtonCellExtractedView()
-                         
-                            
+                            CreateRecipeButtonCell()
                         }
                     }
                 }
@@ -67,7 +63,7 @@ struct ExtractedPersonalRecipesListView: View {
     var body: some View {
         List {
             ForEach(addRecipesVM.myRecipes) { recipe in
-                    RowCellView(recipe: recipe)
+                RowCellView(recipe: recipe)
             } .onDelete(perform: addRecipesVM.delet)
                 .onMove(perform: addRecipesVM.move)
         }.listStyle(.plain)
