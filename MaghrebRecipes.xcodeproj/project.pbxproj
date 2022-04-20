@@ -10,6 +10,7 @@
 		3C2CA7F427F49E1D008962A4 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2CA7F327F49E1D008962A4 /* FavoriteViewModel.swift */; };
 		3C2CA7F827F49F81008962A4 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2CA7F727F49F81008962A4 /* FavoritesView.swift */; };
 		3C2CA7FA27F49FE4008962A4 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2CA7F927F49FE4008962A4 /* EmptyView.swift */; };
+		3C3449FD281033D20036CA4E /* AddRecipeFormButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3449FC281033D20036CA4E /* AddRecipeFormButtonView.swift */; };
 		3C61145527F1D6E000541FBC /* Ressources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61145427F1D6E000541FBC /* Ressources.swift */; };
 		3C61146127F32BBF00541FBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61146027F32BBF00541FBC /* ContentView.swift */; };
 		3C61146327F32BFC00541FBC /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61146227F32BFC00541FBC /* RecipeListView.swift */; };
@@ -33,6 +34,7 @@
 		3C2CA7F327F49E1D008962A4 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		3C2CA7F727F49F81008962A4 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		3C2CA7F927F49FE4008962A4 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		3C3449FC281033D20036CA4E /* AddRecipeFormButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeFormButtonView.swift; sourceTree = "<group>"; };
 		3C61145427F1D6E000541FBC /* Ressources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ressources.swift; sourceTree = "<group>"; };
 		3C61146027F32BBF00541FBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3C61146227F32BFC00541FBC /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,16 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		3C3449FE2810346C0036CA4E /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				3C3449FC281033D20036CA4E /* AddRecipeFormButtonView.swift */,
+				3C8F314E280B9E9700AA7DAA /* CreateRecipeButtonCell.swift */,
+				3C69D80A280444AB00EA5222 /* LikeButtonDetailViewCell.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		3C61146A27F32D0F00541FBC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +108,7 @@
 				3CFABDD02800C82B00546812 /* Lists */,
 				3C2CA7FD27F4A087008962A4 /* Detail */,
 				3C61146F27F32E7200541FBC /* Cell */,
+				3C3449FE2810346C0036CA4E /* Buttons */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,10 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				3C2CA7F927F49FE4008962A4 /* EmptyView.swift */,
-				3C8F314E280B9E9700AA7DAA /* CreateRecipeButtonCell.swift */,
 				3C61146D27F32E6C00541FBC /* RecipeImageView.swift */,
 				3CD517B92807057100A6F921 /* LazyHGridCell.swift */,
-				3C69D80A280444AB00EA5222 /* LikeButtonDetailViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -260,6 +271,7 @@
 				3C61146E27F32E6C00541FBC /* RecipeImageView.swift in Sources */,
 				3C61146127F32BBF00541FBC /* ContentView.swift in Sources */,
 				3C2CA7F827F49F81008962A4 /* FavoritesView.swift in Sources */,
+				3C3449FD281033D20036CA4E /* AddRecipeFormButtonView.swift in Sources */,
 				3CFABDD22800C84E00546812 /* PersonalRecipeListView.swift in Sources */,
 				3CFABDCB2800A30700546812 /* AddRecipeForm.swift in Sources */,
 				3CC3F54727EF3311007D99CF /* MaghrebRecipesApp.swift in Sources */,

@@ -15,17 +15,17 @@ struct RecipeDetailView: View {
         VStack {
             List {
                 RecipeImageView(recipe: recipe, idealWidth: 350, idealHeight: 200, isShowingVege: true, sfFontSize: .title)
-//                    .frame(width: 350, height: 200)
-
+                //                    .frame(width: 350, height: 200)
                 
-                    
+                
+                
                 RecipeTitleCategoryDetailEctractedView(recipe: recipe)
                 HStack {
                     MainInformationExtractedView(text: "\(recipe.valueTimeCooking.formatted()) \(recipe.timeToCook.rawValue.lowercased())", sfSymbol: "hourglass.circle.fill")
                     Spacer()
                     MainInformationExtractedView(text: recipe.recipeAveragePrice.rawValue, sfSymbol: "eurosign.circle.fill")
                     
-                Spacer()
+                    Spacer()
                     MainInformationExtractedView(text: recipe.recipeDifficulty.rawValue, sfSymbol: "flag.circle.fill")
                     
                 }//.padding(.horizontal)
@@ -41,7 +41,8 @@ struct RecipeDetailView: View {
                 RecipeDescriptionDetailExtractedView(recipe: recipe)
                 
             }.listStyle(.inset)
-        }.modifier(Navigation(recipe: recipe))
+        }
+        .modifier(Navigation(recipe: recipe))
     }
 }
 
@@ -50,15 +51,19 @@ struct Navigation: ViewModifier {
     @EnvironmentObject var favoriteVM: FavoriteViewModel
     func body(content: Content) -> some View {
         content
+            .toolbar {
+                ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                    LikeButtonDetailViewCell(recipe: recipe)
+                    Button(action: {
+                        // Share recipe later
+                    }, label: {
+                        Label("Share recipe that you like", systemImage: "square.and.arrow.up")
+                    }).buttonPersonnalStyle(.title3)
+                }
+            }
             .navigationTitle(recipe.title)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing: Button(action: {
-                favoriteVM.addOrRemove(recipe: recipe)
-            }, label: {
-                LikeButtonDetailViewCell(recipe: recipe)
-                
-            }).foregroundColor(Color.green))
-        
+           
     }
     
     func simpleSucces() {
