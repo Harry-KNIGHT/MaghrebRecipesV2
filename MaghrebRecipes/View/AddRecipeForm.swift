@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AddRecipeForm: View {
-    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var recipeVM: AddRecipeViewModel
     @FocusState var isFocused: Bool
     
@@ -26,117 +25,101 @@ struct AddRecipeForm: View {
     @State private var isVegetarian: Bool = false
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Form {
-                    Section(header: Text("Nom")) {
-                        // State variables are binded here (with $), to change there values when value in sub views is updated
-                        RecipeFormExtractedView(titleKey: "Tajine Zeitoune", recipeField: $title)
-                            .focused($isFocused)
-                    }
-                    
-                    Section(header: Text("Type de recette")) {
-                        RecipeTypePickerView(category: $recipeCategory)
-                        Toggle("Végétarien", isOn: $isVegetarian)
-                    }
-                    
-                    Section(header: Text("Ingrédients")) {
-                        if !allIngredients.isEmpty {
-                            ForEach(allIngredients, id: \.self) { ingredient in
-                                Text(ingredient)
-                            }.onDelete(perform: deletIndgredient )
-                        }
-                        
-                        TextField("350G de beurre", text: $ingredient)
-                            .keyboardType(.alphabet)
-                        Button(action: {
-                            if !ingredient.isEmpty {
-                                allIngredients.append(ingredient)
-                                ingredient = ""
-                            }
-                        }, label: { Label("Ingrédient", systemImage: "plus.circle.fill")}).buttonPersonnalStyle(.headline, colorModifier: !ingredient.isEmpty ? .green : .secondary)
-                    }.focused($isFocused)
-                    
-                    Section(header: Text("Remplir les champs")) {
-                        Button(action: {
-                            title = "Tajine Poulet aux Olives"
-                            description = "Tajine de poulet aux olives généreuses"
-                            ingredient = "450G de poulet"
-                            recipeValueTimeCooking = "30"
-                            isVegetarian = true
-                        }, label: {
-                            Label("Remplir le formulaire", systemImage: "plus.circle")
-                        })
-                    }
-                    
-                    Section("Temps de préparation") {
-                        TextField("12", text: $recipeValueTimeCooking)
-                        Picker("Durée", selection: $recipeTimeToCook) {
-                            ForEach(TimeToCook.allCases, id: \.self) { time in
-                                Text(String(time.rawValue))
-                                    .keyboardType(.decimalPad)
-                            }
-                        }.pickerStyle(.automatic)
-                        
-                        Picker("Difficulté de préparation", selection: $recipeDifficulty) {
-                            ForEach(RecipeDifficulty.allCases, id: \.self) {
-                                Text($0.rawValue)
-                            }
-                        }
-                    }
-                    
-                    Section("Prix") {
-                        Picker("Prix moyen", selection: $recipeAveragePrice) {
-                            ForEach(RecipeAveragePrice.allCases, id: \.self) {
-                                Text($0.rawValue)
-                            }
-                        }
-                    }
-                    
-                    
-                    Section(header: Text("Description")) {
-                        DescriptionView(description: $description)
-                            .focused($isFocused)
-                    }
-                    
+//        NavigationView {
+        VStack {
+            Form {
+                Section(header: Text("Nom")) {
+                    // State variables are binded here (with $), to change there values when value in sub views is updated
+                    RecipeFormExtractedView(titleKey: "Tajine Zeitoune", recipeField: $title)
+                        .focused($isFocused)
                 }
                 
-                Button(action: {
-                    if !title.isEmpty && !description.isEmpty {
-                        //                 addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
-                        recipeVM.addRecipeButton(title: title, photo: photo, description: description, allIngredients: allIngredients, category: recipeCategory, difficulty: recipeDifficulty, averagePrice: recipeAveragePrice, cookingTime: Double(recipeValueTimeCooking) ?? 0, timeToCook: recipeTimeToCook, vegetarienRecipe: isVegetarian)
-                        self.presentationMode.wrappedValue.dismiss()
-                        self.recipeVM.simpleSuccesHaptic()
+                Section(header: Text("Type de recette")) {
+                    RecipeTypePickerView(category: $recipeCategory)
+                    Toggle("Végétarien", isOn: $isVegetarian)
+                }
+                
+                Section(header: Text("Ingrédients")) {
+                    if !allIngredients.isEmpty {
+                        ForEach(allIngredients, id: \.self) { ingredient in
+                            Text(ingredient)
+                        }.onDelete(perform: deletIndgredient )
                     }
-                }, label: {
-                    Label("Créer ma recette", systemImage: "book.closed")
-                        .font(.title2)
-                })
-                .padding(.bottom)
-                .buttonPersonnalStyle(colorModifier: !title.isEmpty && !description.isEmpty ? .green : .secondary)
-                .buttonStyle(.bordered)
-            }
-            
-            .toolbar {
-                ToolbarItem(placement: .keyboard) {
-                    HStack {
-                        Spacer()
-                        Button("OK") {
-                            isFocused = false
+                    
+                    TextField("350G de beurre", text: $ingredient)
+                        .keyboardType(.alphabet)
+                    Button(action: {
+                        if !ingredient.isEmpty {
+                            allIngredients.append(ingredient)
+                            ingredient = ""
+                        }
+                    }, label: { Label("Ingrédient", systemImage: "plus.circle.fill")}).buttonPersonnalStyle(.headline, colorModifier: !ingredient.isEmpty ? .green : .secondary)
+                }.focused($isFocused)
+                
+                Section(header: Text("Remplir les champs")) {
+                    Button(action: {
+                        title = "Tajine Poulet aux Olives"
+                        description = "Tajine de poulet aux olives généreuses"
+                        ingredient = "450G de poulet"
+                        recipeValueTimeCooking = "30"
+                        isVegetarian = true
+                    }, label: {
+                        Label("Remplir le formulaire", systemImage: "plus.circle")
+                    })
+                }
+                
+                Section("Temps de préparation") {
+                    TextField("12", text: $recipeValueTimeCooking)
+                    Picker("Durée", selection: $recipeTimeToCook) {
+                        ForEach(TimeToCook.allCases, id: \.self) { time in
+                            Text(String(time.rawValue))
+                                .keyboardType(.decimalPad)
+                        }
+                    }.pickerStyle(.automatic)
+                    
+                    Picker("Difficulté de préparation", selection: $recipeDifficulty) {
+                        ForEach(RecipeDifficulty.allCases, id: \.self) {
+                            Text($0.rawValue)
                         }
                     }
                 }
-                ToolbarItem {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image(systemName: "chevron.down")
-                    }).buttonPersonnalStyle()
+                
+                Section("Prix") {
+                    Picker("Prix moyen", selection: $recipeAveragePrice) {
+                        ForEach(RecipeAveragePrice.allCases, id: \.self) {
+                            Text($0.rawValue)
+                        }
+                    }
+                }
+        
+                Section(header: Text("Description")) {
+                    DescriptionView(description: $description)
+                        .focused($isFocused)
                 }
             }
-            .navigationTitle("Ajouter une recette")
-            .navigationBarTitleDisplayMode(.inline)
+    
+        .toolbar {
+    
+            ToolbarItem(placement: .keyboard) {
+                HStack {
+                    Spacer()
+                    Button("OK") {
+                        isFocused = false
+                    }
+                }
+            }
+            
+            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                AddRecipeButtonView(title: title, description: description, photo: photo, ingredient: ingredient, recipeCategory: recipeCategory, allIngredients: allIngredients, recipeDifficulty: recipeDifficulty, recipeAveragePrice: recipeAveragePrice, recipeValueTimeCooking: recipeValueTimeCooking, recipeTimeToCook: recipeTimeToCook, isVegetarian: isVegetarian)
+                        }
+                }
         }
+        
+        
+      
+        .navigationTitle("Créer une recette")
+        .navigationBarTitleDisplayMode(.inline)
+//    }
     }
     
     func deletIndgredient(at offsets: IndexSet) {
@@ -146,11 +129,15 @@ struct AddRecipeForm: View {
 
 struct AddRecipeForm_Previews: PreviewProvider {
     static var previews: some View {
-        AddRecipeForm()
-            .environmentObject(AddRecipeViewModel())
-        AddRecipeForm()
-            .preferredColorScheme(.dark)
-            .environmentObject(AddRecipeViewModel())
+        NavigationView {
+            AddRecipeForm()
+                .environmentObject(AddRecipeViewModel())
+        }
+        NavigationView {
+            AddRecipeForm()
+                .preferredColorScheme(.dark)
+                .environmentObject(AddRecipeViewModel())
+        }
     }
 }
 
@@ -186,5 +173,38 @@ struct DescriptionView: View {
     
     var body: some View {
         TextEditor(text: $description)
+    }
+}
+
+struct AddRecipeButtonView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var recipeVM: AddRecipeViewModel
+
+     var title: String = ""
+     var description: String = ""
+     var photo: String = ""
+     var ingredient: String = ""
+     var recipeCategory : RecipeCategory = .entry
+     var allIngredients = [String]()
+     var recipeDifficulty: RecipeDifficulty = .easy
+     var recipeAveragePrice: RecipeAveragePrice = .cheap
+     var recipeValueTimeCooking: String = ""
+     var recipeTimeToCook: TimeToCook = .minute
+     var isVegetarian: Bool = false
+    
+    
+    var body: some View {
+        Button(action: {
+            if !title.isEmpty && !description.isEmpty {
+                //                 addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
+                recipeVM.addRecipeButton(title: title, photo: photo, description: description, allIngredients: allIngredients, category: recipeCategory, difficulty: recipeDifficulty, averagePrice: recipeAveragePrice, cookingTime: Double(recipeValueTimeCooking) ?? 0, timeToCook: recipeTimeToCook, vegetarienRecipe: isVegetarian)
+                self.presentationMode.wrappedValue.dismiss()
+                self.recipeVM.simpleSuccesHaptic()
+            }
+        }, label: {
+            Text("Créer")
+        })
+        .buttonPersonnalStyle(colorModifier: !title.isEmpty && !description.isEmpty ? .green : .secondary)
+        .buttonPersonnalStyle(.title3)
     }
 }
