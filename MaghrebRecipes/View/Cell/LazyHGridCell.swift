@@ -72,13 +72,20 @@ struct LazyHGridImageCellView: View {
             .frame(width: width, height: height, alignment: .center)
             .clipShape(CustomPath(radius: 20, corners: [.topLeft, .topRight]))
             if recipe.vegetarianRecipe {
-               Image(systemName: "leaf")
-                    .font(.title2)
-                    .padding(4)
-                    .foregroundColor(.green)
-                    .background(.black)
-                    .clipShape(CustomPath(radius: 10, corners: [.topLeft]))
+                VegetarianRecipePinGridView()
             }
         }
+    }
+}
+
+struct  VegetarianRecipePinGridView: View {
+    @Environment(\.colorScheme) var colorScheme
+    var body: some View {
+        Image(systemName: "leaf")
+            .font(.title3.bold())
+            .padding(4)
+            .foregroundColor(.green)
+            .background(colorScheme == .dark ? Color.black : Color.white)
+            .clipShape(CustomPath(radius: 10, corners: [.topLeft]))
     }
 }
