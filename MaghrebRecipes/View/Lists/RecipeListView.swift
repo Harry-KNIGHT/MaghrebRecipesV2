@@ -61,7 +61,7 @@ struct RowCellView: View {
                         
                         if favoriteVM.favoritesRecipes.contains(recipe) {
                             Image(systemName: "heart.fill")
-                                .buttonPersonnalStyle(.headline)
+                                .buttonPersonnalStyle()
                         }
                     }
                     Text(recipe.description)
