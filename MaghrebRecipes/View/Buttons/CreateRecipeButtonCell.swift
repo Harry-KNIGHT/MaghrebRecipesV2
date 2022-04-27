@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreateRecipeButtonCell: View {
     @State private var isActive = false
+    public var buttonFont: Font = .title3
     var body: some View {
         
         NavigationLink(destination: AddRecipeForm(), isActive: $isActive) {
@@ -16,6 +17,7 @@ struct CreateRecipeButtonCell: View {
             self.isActive = true
         }, label: {
             Label("Créer une recette", systemImage: "plus.circle.fill")
+                .font(buttonFont)
         })
         .buttonPersonnalStyle()
         }

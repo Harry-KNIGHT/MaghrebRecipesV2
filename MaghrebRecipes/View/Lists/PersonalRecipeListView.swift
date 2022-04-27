@@ -20,7 +20,7 @@ struct PersonalRecipeListView: View {
                         VStack {
                             EmptyView(imageName: Image(systemName: "book.closed.circle.fill"), title: "Aucune recette créée")
                                 .multilineTextAlignment(.center)
-                            CreateRecipeButtonCell()
+                            CreateRecipeButtonCell(buttonFont: .title)
                         }
                     }
                 }
