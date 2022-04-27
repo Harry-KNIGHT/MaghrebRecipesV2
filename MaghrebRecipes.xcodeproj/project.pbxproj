@@ -19,6 +19,7 @@
 		3C69D80B280444AB00EA5222 /* LikeButtonDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C69D80A280444AB00EA5222 /* LikeButtonDetailViewCell.swift */; };
 		3C8F314F280B9E9700AA7DAA /* CreateRecipeButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F314E280B9E9700AA7DAA /* CreateRecipeButtonCell.swift */; };
 		3C8F3151280BA3F200AA7DAA /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F3150280BA3F200AA7DAA /* Modifiers.swift */; };
+		3CADC2132819CD9F00482EC5 /* ListRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADC2122819CD9F00482EC5 /* ListRowCell.swift */; };
 		3CC3F54727EF3311007D99CF /* MaghrebRecipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3F54627EF3311007D99CF /* MaghrebRecipesApp.swift */; };
 		3CC3F54B27EF3312007D99CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CC3F54A27EF3312007D99CF /* Assets.xcassets */; };
 		3CC3F54E27EF3312007D99CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CC3F54D27EF3312007D99CF /* Preview Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		3C69D80A280444AB00EA5222 /* LikeButtonDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonDetailViewCell.swift; sourceTree = "<group>"; };
 		3C8F314E280B9E9700AA7DAA /* CreateRecipeButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeButtonCell.swift; sourceTree = "<group>"; };
 		3C8F3150280BA3F200AA7DAA /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		3CADC2122819CD9F00482EC5 /* ListRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowCell.swift; sourceTree = "<group>"; };
 		3CC3F54327EF3311007D99CF /* MaghrebRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaghrebRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC3F54627EF3311007D99CF /* MaghrebRecipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaghrebRecipesApp.swift; sourceTree = "<group>"; };
 		3CC3F54A27EF3312007D99CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				3C2CA7F927F49FE4008962A4 /* EmptyView.swift */,
 				3C61146D27F32E6C00541FBC /* RecipeImageView.swift */,
 				3CD517B92807057100A6F921 /* LazyHGridCell.swift */,
+				3CADC2122819CD9F00482EC5 /* ListRowCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				3C61145527F1D6E000541FBC /* Ressources.swift in Sources */,
 				3C2CA7FA27F49FE4008962A4 /* EmptyView.swift in Sources */,
 				3C61146527F32C0300541FBC /* RecipeDetailView.swift in Sources */,
+				3CADC2132819CD9F00482EC5 /* ListRowCell.swift in Sources */,
 				3CC3F55927EF386E007D99CF /* RecipeModel.swift in Sources */,
 				3C69D80B280444AB00EA5222 /* LikeButtonDetailViewCell.swift in Sources */,
 				3CD517BA2807057100A6F921 /* LazyHGridCell.swift in Sources */,

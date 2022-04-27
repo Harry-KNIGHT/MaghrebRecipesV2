@@ -63,7 +63,7 @@ struct ExtractedPersonalRecipesListView: View {
     var body: some View {
         List {
             ForEach(addRecipesVM.myRecipes) { recipe in
-                RowCellView(recipe: recipe)
+                ListRowCell(recipe: recipe)
             } .onDelete(perform: addRecipesVM.delet)
                 .onMove(perform: addRecipesVM.move)
         }.listStyle(.plain)
