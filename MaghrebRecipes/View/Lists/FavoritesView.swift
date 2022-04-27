@@ -68,35 +68,12 @@ struct ExtractedFavoriteListView: View {
     @EnvironmentObject var favoriteVM: FavoriteViewModel
     var body: some View {
         List {
-            Section {
                 ForEach(favoriteVM.favoritesRecipes) { recipe in
-                       FavoriteRowCellView(recipe: recipe)
+                       ListRowCell(recipe: recipe)
                 }
                 .onDelete(perform: favoriteVM.delet)
                 .onMove(perform: favoriteVM.move)
-            }
         }
         .listStyle(.inset)
-    }
-}
-
-struct FavoriteRowCellView: View {
-    let recipe: RecipeModel
-    @EnvironmentObject var favoriteVM: FavoriteViewModel
-    
-    var body: some View {
-        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-            HStack(alignment: .top) {
-                RecipeImageView(recipe: recipe, isShowingVege: true)
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(recipe.title)
-                        .font(.headline)
-                        .lineLimit(1)
-                    Text(recipe.description)
-                        .lineLimit(2)
-                        .foregroundColor(.secondary)
-                }
-            }
-        }
     }
 }
