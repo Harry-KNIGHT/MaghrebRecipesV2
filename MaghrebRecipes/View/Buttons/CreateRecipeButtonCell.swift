@@ -17,7 +17,7 @@ struct CreateRecipeButtonCell: View {
         }, label: {
             Label("Créer une recette", systemImage: "plus.circle.fill")
         })
-        .buttonPersonnalStyle(.title)
+        .buttonPersonnalStyle()
         }
     }
 }
