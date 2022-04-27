@@ -22,8 +22,7 @@ struct LazyHGridView: View {
                         }
                     }
                 }
-                .padding(.leading)
-                .padding(.trailing)
+                .padding(.horizontal)
             }
         }
     }

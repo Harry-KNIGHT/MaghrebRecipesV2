@@ -66,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C1896C92818563400B047B4 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				3CFABDCA2800A30700546812 /* AddRecipeForm.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
 		3C2CA7FD27F4A087008962A4 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				3CC3F55827EF386E007D99CF /* RecipeModel.swift */,
+				3C61146B27F32D1500541FBC /* Ressources */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,8 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				3C61146027F32BBF00541FBC /* ContentView.swift */,
-				3CFABDCA2800A30700546812 /* AddRecipeForm.swift */,
 				3CFABDD02800C82B00546812 /* Lists */,
+				3C1896C92818563400B047B4 /* Form */,
 				3C2CA7FD27F4A087008962A4 /* Detail */,
 				3C61146F27F32E7200541FBC /* Cell */,
 				3C3449FE2810346C0036CA4E /* Buttons */,
@@ -162,7 +171,6 @@
 				3CC3F54627EF3311007D99CF /* MaghrebRecipesApp.swift */,
 				3C61147227F3337100541FBC /* ViewModel */,
 				3C61146A27F32D0F00541FBC /* Model */,
-				3C61146B27F32D1500541FBC /* Ressources */,
 				3C61146C27F32D2100541FBC /* View */,
 				3C8F3152280BA3F700AA7DAA /* Modifier */,
 				3CC3F54A27EF3312007D99CF /* Assets.xcassets */,
