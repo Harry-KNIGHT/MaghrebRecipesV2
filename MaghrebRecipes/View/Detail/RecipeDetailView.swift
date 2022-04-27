@@ -13,31 +13,44 @@ struct RecipeDetailView: View {
     let recipe: RecipeModel
     var body: some View {
         VStack {
-            List {
-                RecipeImageView(recipe: recipe, idealWidth: 350, idealHeight: 200, isShowingVege: true)
-                
-                RecipeTitleCategoryDetailEctractedView(recipe: recipe)
-                HStack {
-                    MainInformationExtractedView(text: "\(recipe.valueTimeCooking.formatted()) \(recipe.timeToCook.rawValue.lowercased())", sfSymbol: "hourglass.circle.fill")
-                    Spacer()
-                    MainInformationExtractedView(text: recipe.recipeAveragePrice.rawValue, sfSymbol: "eurosign.circle.fill")
+            ScrollView {
+                Image(recipe.photo)
+                    .resizable()
+                    .frame(height: 200)
+                    .scaledToFill()
+                VStack(alignment: .leading) {
+                    RecipeTitleCategoryDetailEctractedView(recipe: recipe)
                     
-                    Spacer()
-                    MainInformationExtractedView(text: recipe.recipeDifficulty.rawValue, sfSymbol: "flag.circle.fill")
+                    Divider()
                     
-                }//.padding(.horizontal)
-                HStack(alignment: .top) {
-                    Text("Ingrédients:")
-                        .font(.headline)
-                    VStack(alignment: .leading, spacing: 5) {
-                        ForEach(recipe.ingredients, id: \.self) { ingredient in
-                            Text("- \(ingredient)")
+                    HStack(alignment: .center) {
+                        MainInformationExtractedView(text: "\(recipe.valueTimeCooking.formatted()) \(recipe.timeToCook.rawValue.lowercased())", sfSymbol: "hourglass.circle.fill")
+                        Spacer()
+                        MainInformationExtractedView(text: recipe.recipeAveragePrice.rawValue, sfSymbol: "eurosign.circle.fill")
+                        
+                        Spacer()
+                        MainInformationExtractedView(text: recipe.recipeDifficulty.rawValue, sfSymbol: "flag.circle.fill")
+                        
+                    }
+                    Divider()
+                    if !recipe.ingredients.isEmpty {
+                    HStack(alignment: .top) {
+                        Text("Ingrédients:")
+                            .font(.headline)
+                        VStack(alignment: .leading, spacing: 5) {
+                            ForEach(recipe.ingredients, id: \.self) { ingredient in
+                                Text("- \(ingredient)")
+                            }
                         }
                     }
-                }
-                RecipeDescriptionDetailExtractedView(recipe: recipe)
-                
-            }.listStyle(.inset)
+                        Divider()
+                    }
+                    
+                  
+                    RecipeDescriptionDetailExtractedView(recipe: recipe)
+                    
+                }.padding(.horizontal)
+            }
         }
         .modifier(Navigation(recipe: recipe))
     }
@@ -60,7 +73,7 @@ struct Navigation: ViewModifier {
             }
             .navigationTitle(recipe.title)
             .navigationBarTitleDisplayMode(.inline)
-           
+        
     }
     
     func simpleSucces() {
