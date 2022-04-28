@@ -46,7 +46,7 @@ struct ShowLikedSheetButtonExtractedView: View {
         }).buttonPersonnalStyle()
         
             .sheet(isPresented: $favoriteVM.isSheetOn) {
-                FavoritesView()
+                FavoritesListView()
             }
     }
 }

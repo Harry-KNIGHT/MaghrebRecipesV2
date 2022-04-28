@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FavoritesView: View {
+struct FavoritesListView: View {
     @EnvironmentObject var favoriteVM: FavoriteViewModel
     @Environment(\.presentationMode) var presentationMode
     
@@ -52,12 +52,12 @@ struct FavoritesView: View {
     }
 }
 
-struct FavoritesView_Previews: PreviewProvider {
+struct FavoritesListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FavoritesView()
+            FavoritesListView()
                 .environmentObject(FavoriteViewModel())
-            FavoritesView()
+            FavoritesListView()
                 .preferredColorScheme(.dark)
                 .environmentObject(FavoriteViewModel())
         }
