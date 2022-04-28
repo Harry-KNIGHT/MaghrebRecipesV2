@@ -12,7 +12,7 @@ struct CreateRecipeButtonCell: View {
     public var buttonFont: Font = .title3
     var body: some View {
         
-        NavigationLink(destination: AddRecipeForm(), isActive: $isActive) {
+
         Button(action: {
             self.isActive = true
         }, label: {
@@ -20,6 +20,8 @@ struct CreateRecipeButtonCell: View {
                 .font(buttonFont)
         })
         .buttonPersonnalStyle()
+        .sheet(isPresented: $isActive) {
+            AddRecipeForm()
         }
     }
 }

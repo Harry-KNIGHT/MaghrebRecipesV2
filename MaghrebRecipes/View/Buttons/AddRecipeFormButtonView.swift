@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-
+/*
+ 
+ Commented due to the presentationmode bug dissmissing view when form is filled
 struct AddRecipeFormButtonView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var recipeVM: AddRecipeViewModel
@@ -46,3 +48,4 @@ struct AddRecipeFormButtonView_Previews: PreviewProvider {
         AddRecipeFormButtonView()
     }
 }
+*/
