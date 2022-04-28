@@ -24,8 +24,7 @@ struct AddRecipeForm: View {
     @State private var recipeValueTimeCooking: String = ""
     @State private var recipeTimeToCook: TimeToCook = .minute
     @State private var isVegetarian: Bool = false
-    @State private var hour: Int = 0
-    @State private var minute: Int = 0
+    
     var body: some View {
         NavigationView {
             
@@ -73,19 +72,13 @@ struct AddRecipeForm: View {
                         .focused($isFocused)
                 }
                 
-                
-                
-                
-                
                 TextField("1h", text: $recipeValueTimeCooking)
                 Picker("Durée", selection: $recipeTimeToCook) {
                     ForEach(TimeToCook.allCases, id: \.self) { time in
                         Text(String(time.rawValue))
                             .keyboardType(.decimalPad)
                     }
-                }.pickerStyle(.automatic)
-                
-                
+                }.pickerStyle(.automatic)  
                 
             }
             
