@@ -10,6 +10,7 @@ import SwiftUI
 struct AddRecipeForm: View {
     @EnvironmentObject var recipeVM: AddRecipeViewModel
     @FocusState var isFocused: Bool
+    @Environment(\.presentationMode) var presentationMode
     
     // we declare State variables for each component of our recipe
     @State private var title: String = ""
@@ -23,21 +24,31 @@ struct AddRecipeForm: View {
     @State private var recipeValueTimeCooking: String = ""
     @State private var recipeTimeToCook: TimeToCook = .minute
     @State private var isVegetarian: Bool = false
-    
+    @State private var hour: Int = 0
+    @State private var minute: Int = 0
     var body: some View {
-//        NavigationView {
-        VStack {
+        NavigationView {
+            
             Form {
-                Section(header: Text("Nom")) {
+                Section {
                     // State variables are binded here (with $), to change there values when value in sub views is updated
                     RecipeFormExtractedView(titleKey: "Tajine Zeitoune", recipeField: $title)
-                        .focused($isFocused)
-                }
-                
-                Section(header: Text("Type de recette")) {
+                    
                     RecipeTypePickerView(category: $recipeCategory)
+                    
+                    Picker("Prix moyen", selection: $recipeAveragePrice) {
+                        ForEach(RecipeAveragePrice.allCases, id: \.self) {
+                            Text($0.rawValue)
+                        }
+                    }
+                    Picker("Difficulté de préparation", selection: $recipeDifficulty) {
+                        ForEach(RecipeDifficulty.allCases, id: \.self) {
+                            Text($0.rawValue)
+                        }
+                    }
+                    
                     Toggle("Végétarien", isOn: $isVegetarian)
-                }
+                } .focused($isFocused)
                 
                 Section(header: Text("Ingrédients")) {
                     if !allIngredients.isEmpty {
@@ -56,7 +67,40 @@ struct AddRecipeForm: View {
                     }, label: { Label("Ingrédient", systemImage: "plus.circle.fill")}).buttonPersonnalStyle(.headline, colorModifier: !ingredient.isEmpty ? .green : .secondary)
                 }.focused($isFocused)
                 
-                Section(header: Text("Remplir les champs")) {
+                
+                Section(header: Text("Description")) {
+                    DescriptionView(description: $description)
+                        .focused($isFocused)
+                }
+                
+                
+                
+                
+                
+                TextField("1h", text: $recipeValueTimeCooking)
+                Picker("Durée", selection: $recipeTimeToCook) {
+                    ForEach(TimeToCook.allCases, id: \.self) { time in
+                        Text(String(time.rawValue))
+                            .keyboardType(.decimalPad)
+                    }
+                }.pickerStyle(.automatic)
+                
+                
+                
+            }
+            
+            .toolbar {
+                
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button("OK") {
+                            isFocused = false
+                        }
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
                         title = "Tajine Poulet aux Olives"
                         description = "Tajine de poulet aux olives généreuses"
@@ -65,61 +109,31 @@ struct AddRecipeForm: View {
                         isVegetarian = true
                     }, label: {
                         Label("Remplir le formulaire", systemImage: "plus.circle")
+                            .foregroundStyle(.background)
+                            .font(.title3)
                     })
                 }
                 
-                Section("Temps de préparation") {
-                    TextField("12", text: $recipeValueTimeCooking)
-                    Picker("Durée", selection: $recipeTimeToCook) {
-                        ForEach(TimeToCook.allCases, id: \.self) { time in
-                            Text(String(time.rawValue))
-                                .keyboardType(.decimalPad)
+                ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                    Button(action: {
+                        if !title.isEmpty && !description.isEmpty {
+                            // addRecipeButton has now parameters, all info needed to create a recipe (View model has been modified too)
+                            recipeVM.addRecipeButton(title: title, photo: photo, description: description, allIngredients: allIngredients, category: recipeCategory, difficulty: recipeDifficulty, averagePrice: recipeAveragePrice, cookingTime: Double(recipeValueTimeCooking) ?? 0, timeToCook: recipeTimeToCook, vegetarienRecipe: isVegetarian)
+                            self.presentationMode.wrappedValue.dismiss()
+                            self.recipeVM.simpleSuccesHaptic()
                         }
-                    }.pickerStyle(.automatic)
+                    }, label: {
+                        Text("Créer")
+                    })
+                    .buttonPersonnalStyle(colorModifier: !title.isEmpty && !description.isEmpty ? .green : .secondary)
+                    .buttonPersonnalStyle(.title3)
                     
-                    Picker("Difficulté de préparation", selection: $recipeDifficulty) {
-                        ForEach(RecipeDifficulty.allCases, id: \.self) {
-                            Text($0.rawValue)
-                        }
-                    }
-                }
-                
-                Section("Prix") {
-                    Picker("Prix moyen", selection: $recipeAveragePrice) {
-                        ForEach(RecipeAveragePrice.allCases, id: \.self) {
-                            Text($0.rawValue)
-                        }
-                    }
-                }
-        
-                Section(header: Text("Description")) {
-                    DescriptionView(description: $description)
-                        .focused($isFocused)
-                }
-            }
-    
-        .toolbar {
-    
-            ToolbarItem(placement: .keyboard) {
-                HStack {
-                    Spacer()
-                    Button("OK") {
-                        isFocused = false
-                    }
                 }
             }
             
-            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                AddRecipeFormButtonView(title: title, description: description, photo: photo, ingredient: ingredient, recipeCategory: recipeCategory, allIngredients: allIngredients, recipeDifficulty: recipeDifficulty, recipeAveragePrice: recipeAveragePrice, recipeValueTimeCooking: recipeValueTimeCooking, recipeTimeToCook: recipeTimeToCook, isVegetarian: isVegetarian)
-                        }
-                }
+            .navigationTitle("Créer une recette")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        
-        
-      
-        .navigationTitle("Créer une recette")
-        .navigationBarTitleDisplayMode(.inline)
-//    }
     }
     
     func deletIndgredient(at offsets: IndexSet) {
