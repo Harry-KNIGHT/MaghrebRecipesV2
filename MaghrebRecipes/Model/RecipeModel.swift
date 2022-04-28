@@ -8,7 +8,7 @@
 import Foundation
 
 /// Model of recipe object
-struct RecipeModel: Identifiable, Equatable {
+struct RecipeModel: Identifiable, Equatable, Hashable {
     var id = UUID()
     let title: String
     let photo: String
