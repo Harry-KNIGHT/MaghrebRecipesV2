@@ -18,6 +18,12 @@ struct ContentView: View {
                 .tabItem {
                     Label("Créations", systemImage: "book.closed.circle.fill")
             }
+    
+            FavoritesListView()
+                .tabItem {
+                    Label("Favoris", systemImage: "heart.circle.fill")
+            }
+            
         }.accentColor(.green)
     }
 }

@@ -22,9 +22,6 @@ struct RecipeListView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     CreateRecipeButtonCell()
                 }
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    ShowLikedSheetButtonExtractedView()
-                }
             }
         }
     }

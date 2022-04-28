@@ -64,11 +64,6 @@ struct Navigation: ViewModifier {
             .toolbar {
                 ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarTrailing) {
                     LikeButtonDetailViewCell(recipe: recipe)
-                    Button(action: {
-                        // Share recipe later
-                    }, label: {
-                        Label("Share recipe that you like", systemImage: "square.and.arrow.up")
-                    }).buttonPersonnalStyle(.title3)
                 }
             }
             .navigationTitle(recipe.title)
