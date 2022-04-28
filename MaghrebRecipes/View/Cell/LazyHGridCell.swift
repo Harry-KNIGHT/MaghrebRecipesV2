@@ -9,19 +9,13 @@ import SwiftUI
 
 struct LazyHGridCell: View {
     let recipe: RecipeModel
-    let rows = [
-        GridItem(.fixed(80))
-    ]
-    
     var body: some View {
-        LazyHGrid(rows: rows, alignment: .center) {
             VStack(alignment: .leading) {
                 LazyHGridImageCellView(recipe: recipe)
                 HGridTitleCategoryView(recipe: recipe)
             }
             .background(Color.green)
             .clipShape(RoundedRectangle(cornerRadius: 20))
-        }
     }
 }
 

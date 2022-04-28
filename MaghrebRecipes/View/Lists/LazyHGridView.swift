@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct LazyHGridView: View {
+    let rows = [
+        GridItem(.fixed(80))
+    ]
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Sélections du moment ")
@@ -16,10 +20,12 @@ struct LazyHGridView: View {
                 .padding(.leading)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
+                    LazyHGrid(rows: rows, alignment: .center) {
                     ForEach(recipes.shuffled()) { recipe in
                         NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                             LazyHGridCell(recipe: recipe)
                         }
+                    }
                     }
                 }
                 .padding(.horizontal)
