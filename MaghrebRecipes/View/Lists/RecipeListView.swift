@@ -13,15 +13,13 @@ struct RecipeListView: View {
     @ObservedObject var favoriteVM = FavoriteViewModel.init()
     var body: some View {
         NavigationView {
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyHGridView()
-                ExtractedMainListView()
-            }
-            .navigationTitle("Recettes")
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    CreateRecipeButtonCell()
-                }
+            ExtractedMainListView()
+                .navigationTitle("Recettes")
+        }
+   
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                CreateRecipeButtonCell()
             }
         }
     }
@@ -53,8 +51,7 @@ struct ExtractedMainListView: View {
                 
             }
         }
-        .listStyle(.inset)
-        .frame(height: 1000)
+        .listStyle(.automatic)
     }
 }
 
