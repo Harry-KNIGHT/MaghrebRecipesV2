@@ -118,6 +118,7 @@
 			children = (
 				3C61146027F32BBF00541FBC /* ContentView.swift */,
 				3CFABDD02800C82B00546812 /* Lists */,
+				3C8CAF9B281BD955002EEF21 /* LazyGrid */,
 				3C1896C92818563400B047B4 /* Form */,
 				3C2CA7FD27F4A087008962A4 /* Detail */,
 				3C61146F27F32E7200541FBC /* Cell */,
@@ -131,7 +132,6 @@
 			children = (
 				3C2CA7F927F49FE4008962A4 /* EmptyView.swift */,
 				3C61146D27F32E6C00541FBC /* RecipeImageView.swift */,
-				3CD517B92807057100A6F921 /* LazyGridCell.swift */,
 				3CADC2122819CD9F00482EC5 /* ListRowCell.swift */,
 			);
 			path = Cell;
@@ -144,6 +144,16 @@
 				3CFABDCC2800AA5600546812 /* AddRecipeViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3C8CAF9B281BD955002EEF21 /* LazyGrid */ = {
+			isa = PBXGroup;
+			children = (
+				3C8CAF99281AF220002EEF21 /* LazyVGridView.swift */,
+				3CD517B72806FD1600A6F921 /* LazyHGridView.swift */,
+				3CD517B92807057100A6F921 /* LazyGridCell.swift */,
+			);
+			path = LazyGrid;
 			sourceTree = "<group>";
 		};
 		3C8F3152280BA3F700AA7DAA /* Modifier */ = {
@@ -198,8 +208,6 @@
 				3C61146227F32BFC00541FBC /* RecipeListView.swift */,
 				3CFABDD12800C84E00546812 /* PersonalRecipeListView.swift */,
 				3C2CA7F727F49F81008962A4 /* FavoritesListView.swift */,
-				3C8CAF99281AF220002EEF21 /* LazyVGridView.swift */,
-				3CD517B72806FD1600A6F921 /* LazyHGridView.swift */,
 			);
 			path = Lists;
 			sourceTree = "<group>";
