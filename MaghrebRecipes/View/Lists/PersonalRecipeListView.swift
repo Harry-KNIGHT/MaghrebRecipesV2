@@ -30,14 +30,13 @@ struct PersonalRecipeListView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if !addRecipesVM.myRecipes.isEmpty {
                         CreateRecipeButtonCell()
-                        
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
                     if !addRecipesVM.myRecipes.isEmpty {
                         EditButton()
-                            .buttonPersonnalStyle(.title3, colorModifier: .accentColor)
+                            .buttonPersonnalStyle(.headline)
                     }
                 }
             }
@@ -59,7 +58,6 @@ struct PersonalRecipeListView_Previews: PreviewProvider {
 
 struct ExtractedPersonalRecipesListView: View {
     @EnvironmentObject var addRecipesVM: AddRecipeViewModel
-    
     var body: some View {
         List {
             ForEach(addRecipesVM.myRecipes) { recipe in
