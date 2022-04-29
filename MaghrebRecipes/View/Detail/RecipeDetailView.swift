@@ -14,10 +14,22 @@ struct RecipeDetailView: View {
     var body: some View {
         VStack {
             ScrollView {
+                if !recipe.photo.isEmpty {
                 Image(recipe.photo)
                     .resizable()
-                    .frame(height: 200)
+                    .frame(minHeight: 200 , idealHeight: 200, maxHeight: .infinity)
                     .scaledToFill()
+                }else {
+                    ZStack {
+                   Rectangle()
+                        .frame(minHeight: 200 , idealHeight: 200, maxHeight: 300)
+                        .foregroundStyle(.secondary)
+                        .scaledToFill()
+                        Text("Maghreb Recipes")
+                            .font(.title2.bold())
+                            
+                    }
+                }
                 VStack(alignment: .leading) {
                     RecipeTitleCategoryDetailEctractedView(recipe: recipe)
                     
