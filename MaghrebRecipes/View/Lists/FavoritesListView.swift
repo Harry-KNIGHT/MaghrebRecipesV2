@@ -23,7 +23,6 @@ struct FavoritesListView: View {
             .navigationTitle("Favoris")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    
                     if !favoriteVM.favoritesRecipes.isEmpty {
                         Button(action: {
                             favoriteVM.isPresented = true
@@ -37,15 +36,6 @@ struct FavoritesListView: View {
                                 }
                             }
                     }
-                }
-                
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image(systemName: "chevron.down")
-                            .foregroundStyle(.green)
-                    }).buttonPersonnalStyle()
                 }
             }
         }
@@ -68,12 +58,12 @@ struct ExtractedFavoriteListView: View {
     @EnvironmentObject var favoriteVM: FavoriteViewModel
     var body: some View {
         List {
-                ForEach(favoriteVM.favoritesRecipes) { recipe in
-                       ListRowCell(recipe: recipe)
-                }
-                .onDelete(perform: favoriteVM.delet)
-                .onMove(perform: favoriteVM.move)
+            ForEach(favoriteVM.favoritesRecipes) { recipe in
+                ListRowCell(recipe: recipe)
+            }
+            .onDelete(perform: favoriteVM.delet)
+            .onMove(perform: favoriteVM.move)
         }
-        .listStyle(.inset)
+        .listStyle(.automatic)
     }
 }
