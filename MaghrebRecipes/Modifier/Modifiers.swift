@@ -23,7 +23,7 @@ struct ButtonModifier: ViewModifier {
 
 
 extension View {
-    func buttonPersonnalStyle(_ fontModifier: Font = .title3, colorModifier: Color = .green) -> some View {
+    func buttonPersonnalStyle(_ fontModifier: Font = .title2, colorModifier: Color = .green) -> some View {
         modifier(ButtonModifier(fontModifier: fontModifier, colorModifier: colorModifier))
     }
 }
