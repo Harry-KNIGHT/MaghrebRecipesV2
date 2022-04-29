@@ -21,11 +21,11 @@ struct LazyHGridView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     LazyHGrid(rows: rows, alignment: .center) {
-                    ForEach(recipes.shuffled()) { recipe in
-                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                            LazyHGridCell(recipe: recipe)
+                        ForEach(recipes.shuffled()) { recipe in
+                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                LazyGridCell(recipe: recipe)
+                            }
                         }
-                    }
                     }
                 }
                 .padding(.horizontal)
