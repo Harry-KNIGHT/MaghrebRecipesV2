@@ -14,12 +14,12 @@ struct LazyVGridView: View {
     ]
     
     var body: some View {
-        
+        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
             LazyVGrid(columns: columns, spacing: 20) {
                 LazyGridCell(recipe: recipe, width: .infinity, height: 200)
                     .padding(.horizontal)
                     .shadow(radius: 10)
-            
+            }
         }
     }
 }
