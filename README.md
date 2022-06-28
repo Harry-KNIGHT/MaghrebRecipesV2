@@ -1,5 +1,3 @@
-Maghreb Recipes was done in private live with David Relut and Steven Altieri for show them how to use SwiftUI with simple views.
-
 If you want contribute on the project, please send me a mail with your GitHub or contact.
 
 You can mail me at: eliott.knight@icloud.com
